@@ -44,7 +44,37 @@ main > section{
    padding: 10px;
    border-radius: 15px;   
   }
-  
+  main > section#profile > .data.nav-secondary{
+    width: 100%;
+    background-color: transparent;
+   color:  white;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+  }
+  main > section#profile > .data.nav-secondary > .task-button{
+   border-radius: 20px;
+   background-color: aqua;
+   border: none;
+   padding: 3px 8px;
+   font-weight: bold;
+   font-size: small;   
+   display: flex; 
+   justify-content: center;
+   align-items: center;
+  cursor: pointer;
+
+  }
+  main > section#profile > .data.nav-secondary > .task-button:active{
+  background-color: rgb(163, 251, 251);
+  }
+
+  main > section#profile > .data.nav-secondary > .task-button > svg{
+  width: 25px;
+  height: 25px;
+  }
+
 main > section#profile > .data > .progressbar{
   position: relative;
  width: 100px;
@@ -90,6 +120,6 @@ font-size: 13px;
 main > section#profile > .data.task-activity > .activity-row.passed > .details > .data > .name{
   border-radius: 20px;
   padding: 5px 8px;
-  color: white;
-
+  background-color: whitesmoke;
+  box-shadow: 0 0 1px 0.5px rgba(0, 0, 0, 0.5);
 }

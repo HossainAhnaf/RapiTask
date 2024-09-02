@@ -3,14 +3,14 @@
 }
 
 .easy{
- background-color: green;
+ color: green;
 }
 .medium{
- background-color: orange;
+ color: orange;
 }
 .hard{
-background-color: red;
+color: red;
 }
 .crazy{
-background-color: violet;
+color: violet;
 }
