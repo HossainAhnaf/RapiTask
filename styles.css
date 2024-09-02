@@ -1,0 +1,95 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+
+  font-family: system-ui, sans-serif;
+  color: black;
+  background-color: rgb(103, 136, 144);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;  
+  background-color: aqua;
+}
+main{
+  width: 100vw;
+  padding: 10px 0;
+}
+
+main > section{
+  
+  width:96% ;
+  padding: 2%;
+  }
+  main > section#profile{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+  }
+  main > section#profile > .data{
+   width: calc(50% - 25px);
+   background-color: rgb(187, 255, 255);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 10px;
+   border-radius: 15px;   
+  }
+  
+main > section#profile > .data > .progressbar{
+  position: relative;
+ width: 100px;
+border-radius: 10px;
+display: flex;
+align-items: center;
+overflow: hidden;
+background-color:  rgb(163, 251, 251);
+box-shadow: 0 0 1px 0.5px rgba(0, 0, 0, 0.5);
+margin-top: 5px;
+}  
+main > section#profile > .data > .progressbar > .complete-bg{
+ width: 50%;
+ background-color: aqua;
+ position: absolute;
+}
+main > section#profile > .data > .progressbar > .data{
+z-index: 1;
+ margin: 0 auto;
+}
+
+main > section#profile > .data.task-activity{
+  width: calc(100% - 25px);
+  gap: 10px;
+}
+main > section#profile > .data.task-activity > .activity-row {
+  width: 100%;
+ }
+main > section#profile > .data.task-activity > .activity-row.passed > .details{
+ display: flex;
+ gap: 8px;
+ flex-wrap: wrap;
+ margin-top: 5px;
+}
+main > section#profile > .data.task-activity > .activity-row.passed > .details > .data{
+  font-weight: bold;
+  display: flex;
+justify-content: center;
+align-items: center;
+gap: 3px;
+font-size: 13px;
+}
+main > section#profile > .data.task-activity > .activity-row.passed > .details > .data > .name{
+  border-radius: 20px;
+  padding: 5px 8px;
+  color: white;
+
+}
