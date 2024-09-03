@@ -1,0 +1,39 @@
+.alpha{
+  color: red;
+}
+
+.easy{
+ color: green;
+}
+.medium{
+ color: orange;
+}
+.hard{
+color: red;
+}
+.crazy{
+color: violet;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+
+  font-family: system-ui, sans-serif;
+  color: black;
+  background-color: rgb(103, 136, 144);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;  
+  background-color: aqua;
+}
+main{
+  width: 100vw;
+  padding: 10px 0;
+}
