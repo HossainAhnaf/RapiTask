@@ -1,14 +1,10 @@
 
-main > section{
-  
-  width:96% ;
-  padding: 2%;
-  }
+
   main > section#profile{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 10px;
     justify-content: center;
   }
   main > section#profile > .data{
@@ -21,37 +17,15 @@ main > section{
    padding: 10px;
    border-radius: 15px;   
   }
-  main > section#profile > .data.nav-secondary{
+  main > section#profile > .data:first-of-type{
     width: 100%;
     background-color: transparent;
    color:  white;
    display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: center;
-  }
-  main > section#profile > .data.nav-secondary > .task-button{
-   border-radius: 20px;
-   background-color: aqua;
-   border: none;
-   padding: 3px 8px;
-   font-weight: bold;
-   font-size: small;   
-   display: flex; 
    justify-content: center;
    align-items: center;
-  cursor: pointer;
-
   }
-  main > section#profile > .data.nav-secondary  .task-button:active{
-  background-color: rgb(163, 251, 251);
-  }
-
-  main > section#profile > .data.nav-secondary  .task-button > svg{
-  width: 25px;
-  height: 25px;
-  }
-
+  
 main > section#profile > .data > .progressbar{
   position: relative;
  width: 100px;

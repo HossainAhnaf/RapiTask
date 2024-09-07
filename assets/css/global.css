@@ -26,14 +26,57 @@ body {
   background-color: rgb(103, 136, 144);
 }
 
-nav {
+.main-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px;  
   background-color: aqua;
 }
+.main-nav > .select-box{
+  width: 30%;
+  height: 25px;
+  font-size: 15px;
+  border-radius: 5px;
+}
 main{
   width: 100vw;
   padding: 10px 0;
+}
+main > section{
+  
+  width:96% ;
+  padding: 2%;
+  }
+.bottom-nav{
+  display: flex;
+  background-color: aqua;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+}
+.bottom-nav > a {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  background-color: inherit;
+
+}
+.bottom-nav > a:active {
+  filter: invert(15%);
+}
+.bottom-nav > a.active {
+  filter: invert(15%);
+
+}
+.bottom-nav > a:first-child {
+ border-right: 1px solid black;
+}
+.bottom-nav > a > span {
+  border: none;
+}
+.bottom-nav > a > span > svg{
+ width: 27px;
+ height: 27px;
 }
