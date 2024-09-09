@@ -22,9 +22,9 @@
 
     <section id="task-section">
       <div class="toolbar">
-        <h3 class="title">Tasks</h3>
-        <div class="right">   
-         
+        <div class="toolbar-item search">
+         <input type="text" placeholder="Search Tasks.."/>
+        </div>
           <div class="toolbar-item">
             <small class="name">Sortby</small>
             <select>
@@ -34,9 +34,9 @@
             </select>
           </div>      
           <div class="toolbar-item">
-            <small class="name">Filter</small>
+            <small class="name">Difficulty</small>
             <select>
-              <option value="">none</option>
+              <option value="">All</option>
               <option value="">Easy</option>
               <option value="">Medium</option>
               <option value="">Hard</option>
@@ -44,8 +44,10 @@
             </select>
           </div>
           <div class="toolbar-item daily">
-            <small class="name">Daily</small>
-            <input type="checkbox" name="" id="">
+            <label class="name">
+              <small>Show Daily Tasks Only</small>
+              <input type="checkbox" name="" id="">
+            </label>
           </div>
           <button class="toolbar-item create-new-task-btn">
             <svg width="26px" height="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,13 +67,23 @@
                   d="M13.25 8.5C12.8358 8.5 12.5 8.83579 12.5 9.25C12.5 9.66421 12.8358 10 13.25 10H16.75C17.1642 10 17.5 9.66421 17.5 9.25C17.5 8.83579 17.1642 8.5 16.75 8.5H13.25Z"
                   fill="#212121"></path>
             </svg>
-            <span>Create</span>
+            <span>Create New</span>
           </button>
+      </div>
+      <div class="tasks-wrapper">
+        <div class="task-card">
+          <p class="content"><b class="task-index">1.</b>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, repellendus? Blanditiis eos est hic a officiis earum perspiciatis? Asperiores fugit rerum illo ad non voluptatum voluptatibus ipsum corrupti unde laudantium!</p>
+          <div class="btns-wrapper">
+            <button class="tick-btn">
+
+            </button>
+            <button class="cross-btn">
+
+            </button>
+          </div> 
         </div>
       </div>
-      <div class="tasks-wrapper"></div>
     </section>
-
 
   </main>
 
