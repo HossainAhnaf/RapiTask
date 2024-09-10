@@ -23,64 +23,89 @@
     <section id="task-section">
       <div class="toolbar">
         <div class="toolbar-item search">
-         <input type="text" placeholder="Search Tasks.."/>
+          <input type="text" placeholder="Search Tasks.." />
         </div>
-          <div class="toolbar-item">
-            <small class="name">Sortby</small>
-            <select>
-              <option value="hossain">Ordered</option>
-              <option value="hossain">Easy to Crazy </option>
-              <option value="hasan">Crazy to Easy</option>
-            </select>
-          </div>      
-          <div class="toolbar-item">
-            <small class="name">Difficulty</small>
-            <select>
-              <option value="">All</option>
-              <option value="">Easy</option>
-              <option value="">Medium</option>
-              <option value="">Hard</option>
-              <option value="">Crazy</option>
-            </select>
-          </div>
-          <div class="toolbar-item daily">
-            <label class="name">
-              <small>Show Daily Tasks Only</small>
-              <input type="checkbox" name="" id="">
-            </label>
-          </div>
-          <button class="toolbar-item create-new-task-btn">
-            <svg width="26px" height="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M3 5.25C3 4.00736 4.00736 3 5.25 3H18.75C19.9926 3 21 4.00736 21 5.25V12.0218C20.5368 11.7253 20.0335 11.4858 19.5 11.3135V5.25C19.5 4.83579 19.1642 4.5 18.75 4.5H5.25C4.83579 4.5 4.5 4.83579 4.5 5.25V18.75C4.5 19.1642 4.83579 19.5 5.25 19.5H11.3135C11.4858 20.0335 11.7253 20.5368 12.0218 21H5.25C4.00736 21 3 19.9926 3 18.75V5.25Z"
-                  fill="#212121"></path>
-                <path
-                  d="M10.7803 7.71967C11.0732 8.01256 11.0732 8.48744 10.7803 8.78033L8.78033 10.7803C8.48744 11.0732 8.01256 11.0732 7.71967 10.7803L6.71967 9.78033C6.42678 9.48744 6.42678 9.01256 6.71967 8.71967C7.01256 8.42678 7.48744 8.42678 7.78033 8.71967L8.25 9.18934L9.71967 7.71967C10.0126 7.42678 10.4874 7.42678 10.7803 7.71967Z"
-                  fill="#212121"></path>
-                <path
-                  d="M10.7803 13.2197C11.0732 13.5126 11.0732 13.9874 10.7803 14.2803L8.78033 16.2803C8.48744 16.5732 8.01256 16.5732 7.71967 16.2803L6.71967 15.2803C6.42678 14.9874 6.42678 14.5126 6.71967 14.2197C7.01256 13.9268 7.48744 13.9268 7.78033 14.2197L8.25 14.6893L9.71967 13.2197C10.0126 12.9268 10.4874 12.9268 10.7803 13.2197Z"
-                  fill="#212121"></path>
-                <path
-                  d="M17.5 12C20.5376 12 23 14.4624 23 17.5C23 20.5376 20.5376 23 17.5 23C14.4624 23 12 20.5376 12 17.5C12 14.4624 14.4624 12 17.5 12ZM18.0011 20.5035L18.0006 18H20.503C20.7792 18 21.003 17.7762 21.003 17.5C21.003 17.2239 20.7792 17 20.503 17H18.0005L18 14.4993C18 14.2231 17.7761 13.9993 17.5 13.9993C17.2239 13.9993 17 14.2231 17 14.4993L17.0005 17H14.4961C14.22 17 13.9961 17.2239 13.9961 17.5C13.9961 17.7762 14.22 18 14.4961 18H17.0006L17.0011 20.5035C17.0011 20.7797 17.225 21.0035 17.5011 21.0035C17.7773 21.0035 18.0011 20.7797 18.0011 20.5035Z"
-                  fill="#212121"></path>
-                <path
-                  d="M13.25 8.5C12.8358 8.5 12.5 8.83579 12.5 9.25C12.5 9.66421 12.8358 10 13.25 10H16.75C17.1642 10 17.5 9.66421 17.5 9.25C17.5 8.83579 17.1642 8.5 16.75 8.5H13.25Z"
-                  fill="#212121"></path>
-            </svg>
-            <span>Create New</span>
-          </button>
+        <div class="toolbar-item">
+          <small class="name">Sortby</small>
+          <select>
+            <option value="hossain">Ordered</option>
+            <option value="hossain">Easy to Crazy </option>
+            <option value="hasan">Crazy to Easy</option>
+          </select>
+        </div>
+        <div class="toolbar-item">
+          <small class="name">Difficulty</small>
+          <select>
+            <option value="">All</option>
+            <option value="">Easy</option>
+            <option value="">Medium</option>
+            <option value="">Hard</option>
+            <option value="">Crazy</option>
+          </select>
+        </div>
+        <div class="toolbar-item daily">
+          <label class="name">
+            <small>Show Daily Tasks Only</small>
+            <input type="checkbox" name="" id="">
+          </label>
+        </div>
+        <button class="toolbar-item create-new-task-btn">
+          <svg width="26px" height="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M3 5.25C3 4.00736 4.00736 3 5.25 3H18.75C19.9926 3 21 4.00736 21 5.25V12.0218C20.5368 11.7253 20.0335 11.4858 19.5 11.3135V5.25C19.5 4.83579 19.1642 4.5 18.75 4.5H5.25C4.83579 4.5 4.5 4.83579 4.5 5.25V18.75C4.5 19.1642 4.83579 19.5 5.25 19.5H11.3135C11.4858 20.0335 11.7253 20.5368 12.0218 21H5.25C4.00736 21 3 19.9926 3 18.75V5.25Z"
+              fill="#212121"></path>
+            <path
+              d="M10.7803 7.71967C11.0732 8.01256 11.0732 8.48744 10.7803 8.78033L8.78033 10.7803C8.48744 11.0732 8.01256 11.0732 7.71967 10.7803L6.71967 9.78033C6.42678 9.48744 6.42678 9.01256 6.71967 8.71967C7.01256 8.42678 7.48744 8.42678 7.78033 8.71967L8.25 9.18934L9.71967 7.71967C10.0126 7.42678 10.4874 7.42678 10.7803 7.71967Z"
+              fill="#212121"></path>
+            <path
+              d="M10.7803 13.2197C11.0732 13.5126 11.0732 13.9874 10.7803 14.2803L8.78033 16.2803C8.48744 16.5732 8.01256 16.5732 7.71967 16.2803L6.71967 15.2803C6.42678 14.9874 6.42678 14.5126 6.71967 14.2197C7.01256 13.9268 7.48744 13.9268 7.78033 14.2197L8.25 14.6893L9.71967 13.2197C10.0126 12.9268 10.4874 12.9268 10.7803 13.2197Z"
+              fill="#212121"></path>
+            <path
+              d="M17.5 12C20.5376 12 23 14.4624 23 17.5C23 20.5376 20.5376 23 17.5 23C14.4624 23 12 20.5376 12 17.5C12 14.4624 14.4624 12 17.5 12ZM18.0011 20.5035L18.0006 18H20.503C20.7792 18 21.003 17.7762 21.003 17.5C21.003 17.2239 20.7792 17 20.503 17H18.0005L18 14.4993C18 14.2231 17.7761 13.9993 17.5 13.9993C17.2239 13.9993 17 14.2231 17 14.4993L17.0005 17H14.4961C14.22 17 13.9961 17.2239 13.9961 17.5C13.9961 17.7762 14.22 18 14.4961 18H17.0006L17.0011 20.5035C17.0011 20.7797 17.225 21.0035 17.5011 21.0035C17.7773 21.0035 18.0011 20.7797 18.0011 20.5035Z"
+              fill="#212121"></path>
+            <path
+              d="M13.25 8.5C12.8358 8.5 12.5 8.83579 12.5 9.25C12.5 9.66421 12.8358 10 13.25 10H16.75C17.1642 10 17.5 9.66421 17.5 9.25C17.5 8.83579 17.1642 8.5 16.75 8.5H13.25Z"
+              fill="#212121"></path>
+          </svg>
+          <span>Create New</span>
+        </button>
       </div>
       <div class="tasks-wrapper">
         <div class="task-card">
-          <p class="content"><b class="task-index">1.</b>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, repellendus? Blanditiis eos est hic a officiis earum perspiciatis? Asperiores fugit rerum illo ad non voluptatum voluptatibus ipsum corrupti unde laudantium!</p>
+          <span class="top-items-wrapper">
+            <button class="edit-btn">
+              <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="m3.99 16.854-1.314 3.504a.75.75 0 0 0 .966.965l3.503-1.314a3 3 0 0 0 1.068-.687L18.36 9.175s-.354-1.061-1.414-2.122c-1.06-1.06-2.122-1.414-2.122-1.414L4.677 15.786a3 3 0 0 0-.687 1.068zm12.249-12.63 1.383-1.383c.248-.248.579-.406.925-.348.487.08 1.232.322 1.934 1.025.703.703.945 1.447 1.025 1.934.058.346-.1.677-.348.925L19.774 7.76s-.353-1.06-1.414-2.12c-1.06-1.062-2.121-1.415-2.121-1.415z"
+                    fill="#000000"></path>
+              </svg>
+            </button>
+            <button class="delete-btn">
+              <svg fill="#000000" width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z">
+                  </path>
+              </svg>
+            </button>
+            <b class="difficulty easy">Easy</b>
+          </span>
+          <p class="content"><b class="task-index">1.</b>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et,
+            repellendus? Blanditiis eos est hic a officiis earum perspiciatis? Asperiores fugit rerum illo ad non
+            voluptatum voluptatibus ipsum corrupti unde laudantium!</p>
           <div class="btns-wrapper">
             <button class="tick-btn">
-
+              <svg fill="green" width="45px" height="45px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                <path d="M760 380.4l-61.6-61.6-263.2 263.1-109.6-109.5L264 534l171.2 171.2L760 380.4z"></path>
+              </svg>
             </button>
             <button class="cross-btn">
-
+              <svg fill="red" width="40px" height="40px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M697.4 759.2l61.8-61.8L573.8 512l185.4-185.4-61.8-61.8L512 450.2 326.6 264.8l-61.8 61.8L450.2 512 264.8 697.4l61.8 61.8L512 573.8z">
+                </path>
+              </svg>
             </button>
-          </div> 
+          </div>
         </div>
       </div>
     </section>
