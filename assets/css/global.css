@@ -1,19 +1,41 @@
-.alpha{
-  color: red;
+:root{
+  --alpha:red;
+  --easy:green;
+  --medium:orange;
+  --hard:red;
+  --crazy:  blueviolet;
 }
 
-.easy{
- color: green;
+.easy.color{
+  color: var(--easy);
 }
-.medium{
- color: orange;
+.medium.color{
+  color: var(--medium);
 }
-.hard{
-color: red;
+.hard.color{
+  color: var(--hard);
 }
-.crazy{
-color: violet;
+.crazy.color{
+  color: var(--crazy);
 }
+
+.easy.bg-color{
+  background-color: var(--easy);
+}
+.medium.bg-color{
+  background-color: var(--medium);
+}
+.hard.bg-color{
+  background-color: var(--hard);
+}
+.crazy.bg-color{
+  background-color: var(--crazy);
+}
+
+.easy.bg-color{
+ 
+}
+
 *{
   margin: 0;
   padding: 0;

@@ -65,66 +65,98 @@ section#task-section > .tasks-wrapper  {
   display: flex;
   flex-direction: column;
   width: 90% ;
-  margin: 0 auto;
+  margin: 10px auto;
 }
-section#task-section > .tasks-wrapper > .task-card {
-   background-color: rgb(163, 251, 251);
-   margin: 10px 0;
-   padding:  4px 15px 6px 15px;
-   display: flex;
-   flex-direction: column;
-   gap: 6px; 
-   border-radius: 10px;
+
+section#task-section > .tasks-wrapper >.task-card {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgb(163, 251, 251);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s ease;
+  font-family: 'Arial', sans-serif;
 }
-section#task-section > .tasks-wrapper > .task-card > .top-items-wrapper{
-  background-color: white;
-  width: max-content;
+
+/* Header with difficulty level */
+section#task-section > .tasks-wrapper >.task-card >.task-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  align-self: center;
-  gap: 6px;
-  border-radius: 15px;
-  padding: 4px 20px;
-}
-section#task-section > .tasks-wrapper > .task-card > .top-items-wrapper > .show-full-btn{
-display: flex;
-background-color: transparent;
-border: none;
-}
-section#task-section > .tasks-wrapper > .task-card > .top-items-wrapper > .btns-wrapper{
-  border-left: 1px solid #000;
-  padding-left: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  display: none;
-}
-section#task-section > .tasks-wrapper > .task-card > .top-items-wrapper > .btns-wrapper > button{
-  background-color: transparent;
-  border: none;
-}
-section#task-section > .tasks-wrapper > .task-card > .content{
- width: 100%;
-}
-section#task-section > .tasks-wrapper > .task-card > .content > .task-index{
- margin-right: 5px;
- font-size: larger;
+  margin-bottom: 15px;
 }
 
-section#task-section > .tasks-wrapper > .task-card > .btns-wrapper{
- display: flex; 
- gap: 10px;
+section#task-section > .tasks-wrapper >.task-card >.task-header >.difficulty {
+  padding: 5px 12px;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.85em;
+  font-weight: 600;
+  text-transform: uppercase;
 }
-section#task-section > .tasks-wrapper > .task-card > .btns-wrapper > button{
- border: none;
- cursor: pointer;
- display: flex;
- justify-content: center;
- align-items: center;
- border-radius: 7px;
+
+
+
+/* Action buttons in the header (edit and delete) */
+section#task-section > .tasks-wrapper >.task-card >.task-header > .action-icons button {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  margin-left: 8px;
+  cursor: pointer;
+  color: #6c757d;
+  transition: color 0.2s ease;
 }
-section#task-section > .tasks-wrapper > .task-card > .btns-wrapper > button:active {
- filter: invert(20%);
+
+section#task-section > .tasks-wrapper >.task-card >.task-header > .action-icons button:hover {
+  color: #000;
+}
+
+/* Main task content */
+section#task-section > .tasks-wrapper >.task-card > .task-content {
+  font-size: 1.10em;
+  margin-bottom: 20px;
+  color: #333;
+  line-height: 1.4em;
+}
+.task-content .index{
+  font-size: 1.15em;
+}
+
+/* Footer buttons for tick and cross */
+section#task-section > .tasks-wrapper >.task-card > .task-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+section#task-section > .tasks-wrapper >.task-card > .task-footer > button {
+  padding: 6px;
+  width: 48%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+section#task-section > .tasks-wrapper >.task-card > .task-footer >.tick-btn {
+  background-color: #00c853;
+  color: #fff;
+}
+
+section#task-section > .tasks-wrapper >.task-card > .task-footer >.cross-btn {
+  background-color: #d50000;
+  color: #fff;
+}
+
+/* Button hover and active effects */
+section#task-section > .tasks-wrapper >.task-card > .task-footer >.task-footer button:hover {
+  transform: scale(1.05);
+}
+
+.tick-btn:hover {
+  background-color: #00b24a;
+}
+
+.cross-btn:hover {
+  background-color: #c20000;
 }
