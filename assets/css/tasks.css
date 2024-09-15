@@ -66,9 +66,11 @@ section#task-section > .tasks-wrapper  {
   flex-direction: column;
   width: 90% ;
   margin: 10px auto;
+  gap:15px;
 }
 
-section#task-section > .tasks-wrapper >.task-card {
+/* General task card styles */
+section#task-section > .tasks-wrapper > .task-card {
   padding: 20px;
   border-radius: 10px;
   background-color: rgb(163, 251, 251);
@@ -77,27 +79,46 @@ section#task-section > .tasks-wrapper >.task-card {
   font-family: 'Arial', sans-serif;
 }
 
-/* Header with difficulty level */
-section#task-section > .tasks-wrapper >.task-card >.task-header {
+/* Header layout */
+section#task-section > .tasks-wrapper > .task-card > .task-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
 }
 
-section#task-section > .tasks-wrapper >.task-card >.task-header >.difficulty {
+section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info {
+  display: flex;
+  align-items: center;
+}
+
+/* Difficulty styling */
+section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info > .difficulty {
   padding: 5px 12px;
   border-radius: 12px;
   color: #fff;
   font-size: 0.85em;
   font-weight: 600;
   text-transform: uppercase;
+  margin-right: 10px;
+}
+
+/* Daily task icon */
+section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info > .daily-icon {
+  font-size: 1.2em;
+  color: #ffab00; 
+  cursor: default;
 }
 
 
 
 /* Action buttons in the header (edit and delete) */
-section#task-section > .tasks-wrapper >.task-card >.task-header > .action-icons button {
+section#task-section > .tasks-wrapper > .task-card > .task-header > .action-icons {
+  display: flex;
+  align-items: center;
+}
+
+section#task-section > .tasks-wrapper > .task-card > .task-header > .action-icons button {
   background: none;
   border: none;
   font-size: 1.5em;
@@ -107,28 +128,29 @@ section#task-section > .tasks-wrapper >.task-card >.task-header > .action-icons 
   transition: color 0.2s ease;
 }
 
-section#task-section > .tasks-wrapper >.task-card >.task-header > .action-icons button:hover {
+section#task-section > .tasks-wrapper > .task-card > .task-header > .action-icons button:active {
   color: #000;
 }
 
 /* Main task content */
-section#task-section > .tasks-wrapper >.task-card > .task-content {
+section#task-section > .tasks-wrapper > .task-card > .task-content {
   font-size: 1.10em;
   margin-bottom: 20px;
   color: #333;
   line-height: 1.4em;
 }
-.task-content .index{
+
+section#task-section > .tasks-wrapper > .task-card > .task-content .index {
   font-size: 1.15em;
 }
 
 /* Footer buttons for tick and cross */
-section#task-section > .tasks-wrapper >.task-card > .task-footer {
+section#task-section > .tasks-wrapper > .task-card > .task-footer {
   display: flex;
   justify-content: space-between;
 }
 
-section#task-section > .tasks-wrapper >.task-card > .task-footer > button {
+section#task-section > .tasks-wrapper > .task-card > .task-footer > button {
   padding: 6px;
   width: 48%;
   border: none;
@@ -138,25 +160,30 @@ section#task-section > .tasks-wrapper >.task-card > .task-footer > button {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-section#task-section > .tasks-wrapper >.task-card > .task-footer >.tick-btn {
+section#task-section > .tasks-wrapper > .task-card > .task-footer > .tick-btn {
   background-color: #00c853;
   color: #fff;
 }
 
-section#task-section > .tasks-wrapper >.task-card > .task-footer >.cross-btn {
+section#task-section > .tasks-wrapper > .task-card > .task-footer > .cross-btn {
   background-color: #d50000;
   color: #fff;
 }
 
 /* Button hover and active effects */
-section#task-section > .tasks-wrapper >.task-card > .task-footer >.task-footer button:hover {
-  transform: scale(1.05);
-}
-
-.tick-btn:hover {
+section#task-section > .tasks-wrapper > .task-card > .task-footer > .tick-btn:hover {
   background-color: #00b24a;
 }
 
-.cross-btn:hover {
+section#task-section > .tasks-wrapper > .task-card > .task-footer > .cross-btn:hover {
   background-color: #c20000;
+}
+
+
+/*  create-task-form */
+
+.create-task-form{
+ width: 70%;
+ height: 50%;
+ background-color: rgb(163, 251, 251);
 }
