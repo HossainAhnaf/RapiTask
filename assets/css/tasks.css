@@ -7,6 +7,7 @@ flex-wrap: wrap;
 gap: 7px;
 border-bottom: 1px solid white;
 padding-bottom: 15px;
+width: 100%;
 }
 
 section#task-section > .toolbar >  .toolbar-item{
@@ -21,14 +22,14 @@ section#task-section > .toolbar >  .toolbar-item > .name{
 }
 section#task-section > .toolbar >  .toolbar-item > :is(input,select){
 padding: 5px;
-border-radius: 10px;
+border-radius: 17px;
 border: none;
-background-color: aqua;
+background-color: rgb(163, 251, 251);
 width: 100%;
 outline: none;
 }
-section#task-section > .toolbar >  .toolbar-item > :is(input,select):focus{
- background-color: rgb(163, 251, 251);
+section#task-section > .toolbar >  .toolbar-item > :is(input,select):active{
+  filter: invert(10%);
 }
 
 section#task-section > .toolbar >  .toolbar-item.search{
@@ -48,7 +49,7 @@ gap: 5px;
 }
 section#task-section > .toolbar >  .create-new-task-btn{
     width: max-content;
-    padding: 0 7px;
+    padding: 5px 10px;
     border-radius: 10px;
     border: none;
     background-color: aqua;
@@ -65,7 +66,7 @@ section#task-section > .tasks-wrapper  {
   display: flex;
   flex-direction: column;
   width: 90% ;
-  margin: 10px auto;
+  margin: 30px auto;
   gap:15px;
 }
 
@@ -79,6 +80,22 @@ section#task-section > .tasks-wrapper > .task-card {
   font-family: 'Arial', sans-serif;
 }
 
+ /* effect-shine */
+.task-card.ai-suggest {
+  -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
+  -webkit-mask-size: 200%;
+  animation: shine 2s infinite;
+}
+
+@-webkit-keyframes shine {
+  from {
+    -webkit-mask-position: 150%;
+  }
+  
+  to {
+    -webkit-mask-position: -50%;
+  }
+}
 /* Header layout */
 section#task-section > .tasks-wrapper > .task-card > .task-header {
   display: flex;
@@ -95,7 +112,7 @@ section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info {
 /* Difficulty styling */
 section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info > .difficulty {
   padding: 5px 12px;
-  border-radius: 12px;
+  border-radius: 17px;
   color: #fff;
   font-size: 0.85em;
   font-weight: 600;
@@ -145,10 +162,12 @@ section#task-section > .tasks-wrapper > .task-card > .task-content .index {
 }
 
 /* Footer buttons for tick and cross */
+
 section#task-section > .tasks-wrapper > .task-card > .task-footer {
   display: flex;
   justify-content: space-between;
 }
+
 
 section#task-section > .tasks-wrapper > .task-card > .task-footer > button {
   padding: 6px;
@@ -171,19 +190,140 @@ section#task-section > .tasks-wrapper > .task-card > .task-footer > .cross-btn {
 }
 
 /* Button hover and active effects */
-section#task-section > .tasks-wrapper > .task-card > .task-footer > .tick-btn:hover {
+section#task-section > .tasks-wrapper > .task-card > .task-footer > .tick-btn:active {
   background-color: #00b24a;
 }
 
-section#task-section > .tasks-wrapper > .task-card > .task-footer > .cross-btn:hover {
+section#task-section > .tasks-wrapper > .task-card > .task-footer > .cross-btn:active {
   background-color: #c20000;
+}
+section#task-section > .tasks-wrapper > .task-card.ai-suggest > .task-footer > .add-to-task-btn{
+  width: 100%;
+  background-color: #00c853;
+}
+
+/*  task-form */
+
+/* Basic form layout */
+.task-form {
+  width: calc(90% - 40px);
+  padding: 20px;
+  border-radius: 10px;
+  background-color:rgb(103, 136, 144) ;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.task-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Form group layout */
+.task-form > .form-group {
+  margin-bottom: 20px;
+}
+
+.task-form > .form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  color: white;
+}
+
+.task-form  .form-control {
+  width: calc(100% - 25px);
+   border:  3px solid rgb(163, 251, 251);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  background-color:rgb(163, 251, 251);
+  transition: border-color .3s;
+}
+
+.task-form  .form-control:focus {
+  border-color:  white;
+  outline: none;
+}
+
+/* Difficulty Dropdown */
+.task-form > .difficulty-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
 
 
-/*  create-task-form */
 
-.create-task-form{
- width: 70%;
- height: 50%;
- background-color: rgb(163, 251, 251);
+/* Daily Task Switch */
+.task-form >.switch-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Toggle switch */
+.task-form .switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.task-form .switch input {
+  display: none;
+}
+
+.task-form .switch .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.task-form .switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.task-form .switch input:checked + .slider {
+  background-color: aqua;
+}
+
+.task-form .switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Submit button */
+.task-form > .btns-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-form > .btns-wrapper > button {
+  width:  calc(55% - 24px);
+  padding: 12px;
+  background-color: aqua;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
