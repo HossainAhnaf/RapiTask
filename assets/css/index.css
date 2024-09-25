@@ -1,11 +1,10 @@
-
-
   main > section#profile{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
+    width: 90%;
   }
   main > section#profile > .data{
    width: calc(50% - 25px);
@@ -15,7 +14,7 @@
    justify-content: center;
    align-items: center;
    padding: 10px;
-   border-radius: 15px;   
+   border-radius: 15px;  
   }
   main > section#profile > .data:first-of-type{
     width: 100%;
@@ -28,7 +27,7 @@
   
 main > section#profile > .data > .progressbar{
   position: relative;
- width: 100px;
+ width: 120px;
 border-radius: 10px;
 display: flex;
 align-items: center;
@@ -38,13 +37,14 @@ box-shadow: 0 0 1px 0.5px rgba(0, 0, 0, 0.5);
 margin-top: 5px;
 }  
 main > section#profile > .data > .progressbar > .complete-bg{
- width: 50%;
+ width: 0;
  background-color: aqua;
  position: absolute;
 }
 main > section#profile > .data > .progressbar > .data{
 z-index: 1;
- margin: 0 auto;
+ margin: 2px auto;
+ font-size: 14px;
 }
 
 main > section#profile > .data.task-activity{
@@ -71,6 +71,6 @@ font-size: 13px;
 main > section#profile > .data.task-activity > .activity-row.passed > .details > .data > .name{
   border-radius: 20px;
   padding: 5px 8px;
-  background-color: whitesmoke;
+  color: white;
   box-shadow: 0 0 1px 0.5px rgba(0, 0, 0, 0.5);
 }
