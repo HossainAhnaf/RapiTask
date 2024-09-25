@@ -5,7 +5,9 @@
   --hard:red;
   --crazy:  blueviolet;
 }
-
+.alpha.color{
+  color: var(--alpha);
+}
 .easy.color{
   color: var(--easy);
 }
@@ -44,7 +46,9 @@
   justify-content: center;
   align-items:center;
 }
-
+.blur-bg.hide{
+  display: none;
+}
 *{
   margin: 0;
   padding: 0;
@@ -75,7 +79,7 @@ main{
   padding: 10px 0;
 }
 main > section{
-  
+  margin: 0 auto;
   width:96% ;
   padding: 2%;
   }
@@ -111,3 +115,15 @@ main > section{
  width: 27px;
  height: 27px;
 }
+
+/*
+    <div class="create-task-form">
+     <div class="data-field">
+       <b class="name"></b> 
+       <input type="text"/>
+     </div>
+          <div class="data-field">
+
+    </div>
+  </div>
+*/
