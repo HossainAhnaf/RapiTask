@@ -1,138 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="./assets/css/global.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+  <style>
+   /*  <script src="./assets/js/profile.js"></script>*/
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<link rel="stylesheet" href="./assets/css/global.css" />
-<link rel="stylesheet" href="./assets/css/tasks.css" />
+ </style>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h4>RapiTask</h4>
 
-<body>
-  <nav class="main-nav">
-    <h4>RapiTask</h4>
-    <select id="user-select-feild">
-      <option value="hasan">Hasan</option>
-      <option value="hossain">Hossain</option>
-    </select>
-  </nav>
-
-  <main>
-
-    <section id="task-section">
-      <div class="toolbar">
-        <div class="toolbar-item search">
-          <input type="text" placeholder="Search Tasks.." />
+      <select id="user-select-feild" onchange="">
+        <option value="hasan">Hasan</option>
+         <option value="hossain">Hossain</option>
+      </select>
+    </nav>
+    <main>
+      <section id="profile">
+        <div class="data">
+          <h3 class="name" id="author-name">name</h3>
+         
+ 
         </div>
-        <div class="toolbar-item">
-          <small class="name">Sortby</small>
-          <select>
-            <option value="hossain">Ordered</option>
-            <option value="hossain">Easy to Crazy </option>
-            <option value="hasan">Crazy to Easy</option>
-          </select>
+        <div class="data">
+          <small class="name">Title</small>
+          <b class="value alpha color" id="author-title">###</b>
         </div>
-        <div class="toolbar-item">
-          <small class="name">Difficulty</small>
-          <select>
-            <option value="">All</option>
-            <option class="easy color" value="">Easy</option>
-            <option class="medium color" value="">Medium</option>
-            <option class="hard color" value="">Hard</option>
-            <option class="crazy color" value="">Crazy</option>
-          </select>
+        <div class="data">
+          <small class="name">Level</small>
+          <b class="value" id="author-level">0 / 0</b>
         </div>
-        <div class="toolbar-item daily">
-          <label class="name">
-            <small>Show Daily Tasks Only</small>
-            <input type="checkbox" name="" id="">
-          </label>
-        </div>
-        <button class="toolbar-item create-new-task-btn">
-          <svg width="26px" height="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M3 5.25C3 4.00736 4.00736 3 5.25 3H18.75C19.9926 3 21 4.00736 21 5.25V12.0218C20.5368 11.7253 20.0335 11.4858 19.5 11.3135V5.25C19.5 4.83579 19.1642 4.5 18.75 4.5H5.25C4.83579 4.5 4.5 4.83579 4.5 5.25V18.75C4.5 19.1642 4.83579 19.5 5.25 19.5H11.3135C11.4858 20.0335 11.7253 20.5368 12.0218 21H5.25C4.00736 21 3 19.9926 3 18.75V5.25Z"
-              fill="#212121"></path>
-            <path
-              d="M10.7803 7.71967C11.0732 8.01256 11.0732 8.48744 10.7803 8.78033L8.78033 10.7803C8.48744 11.0732 8.01256 11.0732 7.71967 10.7803L6.71967 9.78033C6.42678 9.48744 6.42678 9.01256 6.71967 8.71967C7.01256 8.42678 7.48744 8.42678 7.78033 8.71967L8.25 9.18934L9.71967 7.71967C10.0126 7.42678 10.4874 7.42678 10.7803 7.71967Z"
-              fill="#212121"></path>
-            <path
-              d="M10.7803 13.2197C11.0732 13.5126 11.0732 13.9874 10.7803 14.2803L8.78033 16.2803C8.48744 16.5732 8.01256 16.5732 7.71967 16.2803L6.71967 15.2803C6.42678 14.9874 6.42678 14.5126 6.71967 14.2197C7.01256 13.9268 7.48744 13.9268 7.78033 14.2197L8.25 14.6893L9.71967 13.2197C10.0126 12.9268 10.4874 12.9268 10.7803 13.2197Z"
-              fill="#212121"></path>
-            <path
-              d="M17.5 12C20.5376 12 23 14.4624 23 17.5C23 20.5376 20.5376 23 17.5 23C14.4624 23 12 20.5376 12 17.5C12 14.4624 14.4624 12 17.5 12ZM18.0011 20.5035L18.0006 18H20.503C20.7792 18 21.003 17.7762 21.003 17.5C21.003 17.2239 20.7792 17 20.503 17H18.0005L18 14.4993C18 14.2231 17.7761 13.9993 17.5 13.9993C17.2239 13.9993 17 14.2231 17 14.4993L17.0005 17H14.4961C14.22 17 13.9961 17.2239 13.9961 17.5C13.9961 17.7762 14.22 18 14.4961 18H17.0006L17.0011 20.5035C17.0011 20.7797 17.225 21.0035 17.5011 21.0035C17.7773 21.0035 18.0011 20.7797 18.0011 20.5035Z"
-              fill="#212121"></path>
-            <path
-              d="M13.25 8.5C12.8358 8.5 12.5 8.83579 12.5 9.25C12.5 9.66421 12.8358 10 13.25 10H16.75C17.1642 10 17.5 9.66421 17.5 9.25C17.5 8.83579 17.1642 8.5 16.75 8.5H13.25Z"
-              fill="#212121"></path>
-          </svg>
-          <span>Create New</span>
-        </button>
-      </div>
-      <div class="tasks-wrapper">
-        <div class="task-card">
-          <div class="task-header">
-            <div class="task-info">
-              <span class="difficulty crazy bg-color">Crazy</span>
-              <span class="daily-icon" title="Daily Task">&#128197;</span>
+        <div class="data">
+          <small class="name">Xp</small>
+          <div class="progressbar" id="xp-progressbar" >
+            <div class="data">
+              <span class="xp-count" >0</span>
+              <span>/</span>
+              <span class="xp-need">1000</span>
             </div>
-            <div class="action-icons">
-              <button class="edit-btn" title="Edit">&#9998;</button>
-              <button class="del-btn" title="Delete">&#128465;</button>
-            </div>
-          </div>
-          
-          <div class="task-content">
-            <p><b class="index">3. </b>Complete the data science project</p>
-          </div>
-          
-          <div class="task-footer">
-            <button class="tick-btn" title="Mark as complete">&#10003;</button>
-            <button class="cross-btn" title="Reject">&#10007;</button>
+            <div class="complete-bg" >&nbsp;</div>
           </div>
         </div>
-        
-        
+        <div class="data">
+          <small class="name">Active Tasks</small>
+          <b class="value" id="active-task-count">0</b>
+        </div>
+        <div class="data task-activity">
+          <h4 class="name">Task Activity</h4>
+          <div class="activity-row total"> <p class="heading">Lifetime task submited - <span id="author-task-total">0</span></p></div>
+          <div class="activity-row passed">
+            <p class="heading">Passed - <span id="author-task-passed">0</span></p>
+            <div class="details" id="task-complete-details">
       </div>
-    </section>
-   <div class="blur-bg">
-    <div class="create-task-form">
-
-    </div>
-  </div>
-  </main>
-
-  <nav class="bottom-nav">
-    <a href="./">
+          </div>
+          <div class="activity-row failed"> <p class="heading">Failed - <span id="author-task-failed">0</span></p></div>
+        </div>
+      </section>
+    </main>
+    <nav class="bottom-nav">
+     <a class="active" href="/" > 
       <span>
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-          <g id="SVGRepo_iconCarrier">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M16.5 7.063C16.5 10.258 14.57 13 12 13c-2.572 0-4.5-2.742-4.5-5.938C7.5 3.868 9.16 2 12 2s4.5 1.867 4.5 5.063zM4.102 20.142C4.487 20.6 6.145 22 12 22c5.855 0 7.512-1.4 7.898-1.857a.416.416 0 0 0 .09-.317C19.9 18.944 19.106 15 12 15s-7.9 3.944-7.989 4.826a.416.416 0 0 0 .091.317z"
-              fill="#000000"></path>
-          </g>
-        </svg>
+        <svg  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 7.063C16.5 10.258 14.57 13 12 13c-2.572 0-4.5-2.742-4.5-5.938C7.5 3.868 9.16 2 12 2s4.5 1.867 4.5 5.063zM4.102 20.142C4.487 20.6 6.145 22 12 22c5.855 0 7.512-1.4 7.898-1.857a.416.416 0 0 0 .09-.317C19.9 18.944 19.106 15 12 15s-7.9 3.944-7.989 4.826a.416.416 0 0 0 .091.317z" fill="#000000"></path></g></svg>    
       </span>
     </a>
-    <a class="active" href="./tasks.html">
-      <span>
-        <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-          <g id="SVGRepo_iconCarrier">
-            <path
-              d="M5 22h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2h-2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15c0 1.103.897 2 2 2zM5 5h2v2h10V5h2v15H5V5z">
-            </path>
-            <path d="m11 13.586-1.793-1.793-1.414 1.414L11 16.414l5.207-5.207-1.414-1.414z"></path>
-          </g>
-        </svg>
-      </span>
-    </a>
-
-  </nav>
-</body>
-
+      <a href="/tasks.html">
+        <span>
+          <svg fill="#000000"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M5 22h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2h-2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15c0 1.103.897 2 2 2zM5 5h2v2h10V5h2v15H5V5z"></path><path d="m11 13.586-1.793-1.793-1.414 1.414L11 16.414l5.207-5.207-1.414-1.414z"></path></g></svg>
+        </span>
+      </a>
+     
+    </nav>
+  </body>
+  <script src="./assets/js/global.js" ></script>
 </html>
