@@ -17,7 +17,7 @@ async function updateTaskStatus(id,status){
   .body({
     "status": status
   })
-  if (res.success) null
+  // if (res.success) null
 }
 function initTaskForm() {
   const taskForm = document.querySelector('.task-form')
