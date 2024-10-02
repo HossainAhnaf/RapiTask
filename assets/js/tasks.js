@@ -17,6 +17,7 @@ async function updateTaskStatus(id,status){
   .body({
     "status": status
   })
+  console.log(res);
   // if (res.success) null
 }
 function initTaskForm() {
@@ -122,8 +123,8 @@ function insertTask( {
   </div>
 
   <div class="task-footer">
-  <button class="tick-btn" title="Pass" onclick='updateTaskStatus(${id},"complete")'>&#10003;</button>
-  <button class="cross-btn" title="Fail" onclick='updateTaskStatus(${id},"fail")'>&#10007;</button>
+  <button class="tick-btn" title="Pass" onclick='updateTaskStatus(${id},"completed")'>&#10003;</button>
+  <button class="cross-btn" title="Fail" onclick='updateTaskStatus(${id},"failed")'>&#10007;</button>
   </div>
   </div>
 

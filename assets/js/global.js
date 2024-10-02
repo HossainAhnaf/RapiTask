@@ -48,12 +48,7 @@ function apiFetch(path) {
                 },
                 body: method !== 'GET' ? body : null  // Only set body if the method is not GET
             })
-            .then(response => {
-                if (!response.ok) {
-                    reject(new Error('Failed to fetch'));
-                }
-                return response.json();  // Assume a JSON response
-            })
+            .then(response => response.json())
             .then(resolve)
             .catch(reject);
         }
