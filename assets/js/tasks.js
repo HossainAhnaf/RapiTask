@@ -2,7 +2,7 @@ async function setDifficultySelect(element) {
   const difficultiesData = await apiFetch("difficulties").as(username)
   if (difficultiesData) {
     for (const {
-      id, name, slug, xp_value, light_color
+      id, name, slug, xp_value 
     } of difficultiesData.data) {
       const html = `<option  value="${id}" data-xp="${xp_value}">${name}</option>`
       element.innerHTML += html
@@ -54,7 +54,7 @@ function initTaskForm() {
       const taskCard = tasksWrapper.querySelector(`.task-card[data-id='${id}']`)
       taskTitleInput.value = taskCard.getAttribute("data-title")
       dailyTaskCheckbox.checked = taskCard.getAttribute("data-repeat_type") === "O" ? false: true
-      difficultySelect.value = taskCard.getAttribute("data-difficulty")
+      difficultySelect.value = taskCard.getAttribute("data-difficulty-id")
 
       submitBtn.onclick = async ()=> {
         const res = await apiFetch(`challenges/${id}`)
@@ -92,7 +92,7 @@ function insertTask( {
   id, title, repeat_type, difficulty
 }) {
   const html = `
-  <div class="task-card" data-id="${id}" data-title="${title}" data-repeat_type="${repeat_type}" data-difficulty="${difficulty}">
+  <div class="task-card" data-id="${id}" data-title="${title}" data-repeat_type="${repeat_type}" data-difficulty-id="${difficulty.id}">
   <div class="task-header">
   <div class="task-info">
   <span class="difficulty ${difficulty.slug}">${difficulty.name}</span>
@@ -122,12 +122,14 @@ function insertTask( {
   tasksWrapper.innerHTML += html
 }
 function updateTask(taskCard, {
-  id, title, repeat_type, difficulty
+ title, repeat_type, difficulty
 }) {
-
-  if (repeat_type === "O" && taskCard.querySelector(".daily-icon"))
-    taskCard.removeChild(taskCard.querySelector(".daily-icon"))
-
+  taskCard.setAttribute("data-title",title)
+  taskCard.setAttribute("data-repeat_type",repeat_type)
+   taskCard.setAttribute("data-difficulty-id",difficulty.id)
+  const difficultyElm =  taskCard.querySelector(".difficulty")
+  difficultyElm.textContent = difficulty.name 
+  difficultyElm.classList[1] = difficulty.slug
   taskCard.querySelector(".title").textContent = title
 
 }
