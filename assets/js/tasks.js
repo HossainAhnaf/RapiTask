@@ -17,8 +17,9 @@ async function updateTaskStatus(id,status){
   .body({
     "status": status
   })
-  console.log(res);
-  // if (res.success) null
+  if (res.success) {
+   tasksWrapper.removeChild(tasksWrapper.querySelector(`.task-card[data-id="${id}"]`))
+  }
 }
 function initTaskForm() {
   const taskForm = document.querySelector('.task-form')
@@ -97,16 +98,16 @@ const {
   setUpdateTaskForm,
   deleteTask
 } = initTaskForm()
-
 function insertTask( {
   id, title, repeat_type, difficulty
 }) {
+let index = 1
   const html = `
   <div class="task-card" data-id="${id}" data-title="${title}" data-repeat_type="${repeat_type}" data-difficulty-id="${difficulty.id}">
   <div class="task-header">
   <div class="task-info">
   <span class="difficulty ${difficulty.slug}">${difficulty.name}</span>
-  ${ repeat_type === "D" ? '<span class="daily-icon" title="Daily Task">&#128197;</span>': "" }
+  <span class="daily-icon" title="Daily Task">&#128197;</span>
   </div>
   <div class="action-icons">
   <button class="edit-btn" title="Edit" onclick="setUpdateTaskForm(${id})">
@@ -119,7 +120,7 @@ function insertTask( {
   </div>
 
   <div class="task-content">
-  <p><b class="index">${id}. </b><span class="title">${title}</span></p>
+  <p><b class="index">${index++}. </b><span class="title">${title}</span></p>
   </div>
 
   <div class="task-footer">
