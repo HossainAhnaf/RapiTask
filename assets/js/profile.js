@@ -1,12 +1,12 @@
  // vari from global ↓
 // username ,
 // func from global ↓
-// switchUsername ,rapitFetchHelper
+// switchUsername ,apiFetch
 var profileData = null
 var levelTitles = null
 
 async function setTaskActivity(){
- const taskActivityData = await rapitFetchHelper("challenges/activities")
+ const taskActivityData = await apiFetch("challenges/activities")
  const {total,failed,completed} = taskActivityData.data
   const authorTaskTotal = document.getElementById("author-task-total")
   const authorTaskPassed = document.getElementById("author-task-passed")
@@ -24,7 +24,7 @@ async function setTaskActivity(){
   
 }
 async function setActiveTasksData(){
- const tasksData = await rapitFetchHelper("challenges")
+ const tasksData = await apiFetch("challenges").as(username)
  const activeTaskCount = document.getElementById('active-task-count')
  activeTaskCount.textContent = tasksData.meta.count
  
@@ -48,12 +48,12 @@ function setProfileData(){
  setTaskActivity()
 }
 async function fetchProfileData(){
- profileData = await rapitFetchHelper(`users/${username}`)
+ profileData = await apiFetch(`users/${username}`).as(username)
  profileData = profileData.data
 
 }
  async function fetchLevelTitles(){
- levelTitles  = await rapitFetchHelper("level-titles")
+ levelTitles  = await apiFetch("level-titles").as(username)
  levelTitles = levelTitles.data
  }
 
