@@ -9,7 +9,16 @@ async function setDifficultySelect(element) {
     }
   }
 }
-
+async function updateTaskStatus(id,status){
+  console.log(status);
+  const res = await apiFetch(`challenges/${id}`)
+  .as(username)
+  .method("PATCH")
+  .body({
+    "status": status
+  })
+  if (res.success) null
+}
 function initTaskForm() {
   const taskForm = document.querySelector('.task-form')
   const formTitle = taskForm.querySelector(".form-title")
@@ -113,8 +122,8 @@ function insertTask( {
   </div>
 
   <div class="task-footer">
-  <button class="tick-btn" title="Pass">&#10003;</button>
-  <button class="cross-btn" title="Fail">&#10007;</button>
+  <button class="tick-btn" title="Pass" onclick='updateTaskStatus(${id},"complete")'>&#10003;</button>
+  <button class="cross-btn" title="Fail" onclick='updateTaskStatus(${id},"fail")'>&#10007;</button>
   </div>
   </div>
 
@@ -131,8 +140,8 @@ function updateTask(taskCard, {
   difficultyElm.textContent = difficulty.name 
   difficultyElm.classList[1] = difficulty.slug
   taskCard.querySelector(".title").textContent = title
-
 }
+
 async function setAllTask() {
   const tasksData = await apiFetch('challenges').as(username)
   for (data of tasksData.results) {
