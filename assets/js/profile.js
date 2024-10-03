@@ -6,7 +6,7 @@ var profileData = null
 var levelTitles = null
 
 async function setTaskActivity(){
- const taskActivityData = await apiFetch("challenges/activities")
+ const taskActivityData = await apiFetch("challenges/activities").as(username)
  const {total,failed,completed} = taskActivityData.data
   const authorTaskTotal = document.getElementById("author-task-total")
   const authorTaskPassed = document.getElementById("author-task-passed")
@@ -15,9 +15,9 @@ async function setTaskActivity(){
   authorTaskTotal.textContent = total
   authorTaskPassed.textContent = completed.total
   authorTaskFailed.textContent = failed
-
- for (const {name,challenge_count,light_color} of completed.difficulty){
-  const html = `<span class="data"><span class="name ${name} bg-color">${name}</span> <span class="value"> x${challenge_count}</span></span> `
+  taskCompleteDetails.innerHTML = ""
+ for (const {name,slug,challenge_count,light_color} of completed.difficulties){
+  const html = `<span class="data"><span class="name ${slug}" style="background-color:${light_color}">${name}</span> <span class="value"> x${challenge_count}</span></span> `
    taskCompleteDetails.innerHTML += html
 }
  
@@ -58,10 +58,20 @@ async function fetchProfileData(){
  }
 
 
- window.onload = async ()=>{
-   await fetchLevelTitles()
-   await fetchProfileData()
-   setProfileData()
+ 
+ async function setAllData(params) {
+  await fetchLevelTitles()
+  await fetchProfileData()
+  setProfileData()
  }
+
+ function switchAccount(){
+  if (username === "hasan") 
+    username = "hossain"
+  else username = " hasan"
+   setAllData()
+}
+
+ window.onload = setAllData
 
 

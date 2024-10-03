@@ -1,5 +1,7 @@
 section#task-section{
+  counter-reset: task-counter; /* Initialize the counter */
 }
+
 section#task-section > .toolbar{
  display: flex;
  align-items: center;
@@ -78,6 +80,7 @@ section#task-section > .tasks-wrapper > .task-card {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
   transition: box-shadow 0.3s ease;
   font-family: 'Arial', sans-serif;
+  counter-increment: task-counter; /* Increment the counter for each task card */
 }
 
  /* effect-shine */
@@ -159,11 +162,10 @@ section#task-section > .tasks-wrapper > .task-card > .task-content {
   color: #333;
   line-height: 1.4em;
 }
-
-section#task-section > .tasks-wrapper > .task-card > .task-content .index {
+section#task-section > .tasks-wrapper > .task-card > .task-content .index::before {
+  content: counter(task-counter) ". "; /* Display the counter value */
   font-size: 1.15em;
 }
-
 /* Footer buttons for tick and cross */
 
 section#task-section > .tasks-wrapper > .task-card > .task-footer {

@@ -41,6 +41,8 @@ function initTaskForm() {
   return {
     setCreateTaskForm: function() {
       taskForm.parentNode.classList.remove("hide")
+      submitBtn.textContent = "Create"
+      discardBtn.textContent = "Discard"
       submitBtn.onclick = async ()=> {
         const res = await apiFetch("challenges")
         .as(username)
@@ -66,7 +68,8 @@ function initTaskForm() {
       taskTitleInput.value = taskCard.getAttribute("data-title")
       dailyTaskCheckbox.checked = taskCard.getAttribute("data-repeat_type") === "O" ? false: true
       difficultySelect.value = taskCard.getAttribute("data-difficulty-id")
-
+       submitBtn.textContent = "Save"
+       discardBtn.textContent = "Cancel"
       submitBtn.onclick = async ()=> {
         const res = await apiFetch(`challenges/${id}`)
         .as(username)
@@ -91,7 +94,6 @@ function initTaskForm() {
     }
   }
 }
-
 const tasksWrapper = document.querySelector(".tasks-wrapper")
 const {
   setCreateTaskForm,
@@ -101,12 +103,11 @@ const {
 function insertTask( {
   id, title, repeat_type, difficulty
 }) {
-let index = 1
   const html = `
   <div class="task-card" data-id="${id}" data-title="${title}" data-repeat_type="${repeat_type}" data-difficulty-id="${difficulty.id}">
   <div class="task-header">
   <div class="task-info">
-  <span class="difficulty ${difficulty.slug}">${difficulty.name}</span>
+  <span class="difficulty ${difficulty.slug}" style="background-color:${difficulty.light_color}">${difficulty.name}</span>
   <span class="daily-icon" title="Daily Task">&#128197;</span>
   </div>
   <div class="action-icons">
@@ -120,7 +121,7 @@ let index = 1
   </div>
 
   <div class="task-content">
-  <p><b class="index">${index++}. </b><span class="title">${title}</span></p>
+  <p><b class="index"></b><span class="title">${title}</span></p>
   </div>
 
   <div class="task-footer">
@@ -139,16 +140,27 @@ function updateTask(taskCard, {
   taskCard.setAttribute("data-repeat_type",repeat_type)
    taskCard.setAttribute("data-difficulty-id",difficulty.id)
   const difficultyElm =  taskCard.querySelector(".difficulty")
+  difficultyElm.style.backgroundColor = difficulty.light_color
   difficultyElm.textContent = difficulty.name 
   difficultyElm.classList[1] = difficulty.slug
   taskCard.querySelector(".title").textContent = title
 }
 
 async function setAllTask() {
+  tasksWrapper.innerHTML = ""
   const tasksData = await apiFetch('challenges').as(username)
   for (data of tasksData.results) {
     insertTask(data)
   }
+}
+
+
+
+function switchAccount(){
+  if (username === "hasan") 
+    username = "hossain"
+  else username = " hasan"
+   setAllTask()
 }
 
 window.onload = ()=> {

@@ -56,6 +56,6 @@ function apiFetch(path) {
 }
 
 
-function switchUsername(){
-  
-}
+
+// https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/level_titles/leveltitle/
+// https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/difficulties/difficulty/
