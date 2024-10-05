@@ -55,14 +55,6 @@ function apiFetch(path) {
   };
 }
 
-function debounce(fn, delay) {
-  let timeout = null
-  return ()=> {
-    if (timeout)
-      clearTimeout(timeout)
-    timeout = setTimeout(fn, delay)
-  }
-}
 
 
 // https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/level_titles/leveltitle/
