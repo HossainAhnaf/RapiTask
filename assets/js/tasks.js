@@ -1,16 +1,16 @@
+
 async function setDifficultySelect(element) {
   const difficultiesData = await apiFetch("difficulties").as(username)
   if (difficultiesData) {
     for (const {
-      id, name, slug, xp_value 
+      id, name, slug, xp_value
     } of difficultiesData.data) {
       const html = `<option  value="${id}" data-xp="${xp_value}">${name}</option>`
       element.innerHTML += html
     }
   }
 }
-async function updateTaskStatus(id,status){
-  console.log(status);
+async function updateTaskStatus(id, status) {
   const res = await apiFetch(`challenges/${id}`)
   .as(username)
   .method("PATCH")
@@ -18,7 +18,7 @@ async function updateTaskStatus(id,status){
     "status": status
   })
   if (res.success) {
-   tasksWrapper.removeChild(tasksWrapper.querySelector(`.task-card[data-id="${id}"]`))
+    tasksWrapper.removeChild(tasksWrapper.querySelector(`.task-card[data-id="${id}"]`))
   }
 }
 function initTaskForm() {
@@ -29,8 +29,27 @@ function initTaskForm() {
   const dailyTaskCheckbox = document.getElementById("daily-task-checkbox")
   const submitBtn = taskForm.querySelector(".submit-btn")
   const discardBtn = taskForm.querySelector(".discard-btn")
+
+  const formTitleDebounce = debounce( async ()=> {
+   const suggestedDiff = await apiFetch('difficulties/suggestions')
+    .as(username)
+    .method("POST")
+    .body({
+      title: formTitle.value
+    })
+    console.log(suggestedDiff)
+   // console.log(1)
+  }, 2000)
+try {
   setDifficultySelect(difficultySelect)
 
+  formTitle.addEventListener("input", ()=> {
+    formTitleDebounce()
+  //  console.log(0)
+    })
+}catch(e){
+  console.log(e)
+}  
   discardBtn.onclick = ()=> {
     formTitle.textContent = "Create New Task"
     taskTitleInput.value = ""
@@ -68,8 +87,8 @@ function initTaskForm() {
       taskTitleInput.value = taskCard.getAttribute("data-title")
       dailyTaskCheckbox.checked = taskCard.getAttribute("data-repeat_type") === "O" ? false: true
       difficultySelect.value = taskCard.getAttribute("data-difficulty-id")
-       submitBtn.textContent = "Save"
-       discardBtn.textContent = "Cancel"
+      submitBtn.textContent = "Save"
+      discardBtn.textContent = "Cancel"
       submitBtn.onclick = async ()=> {
         const res = await apiFetch(`challenges/${id}`)
         .as(username)
@@ -87,8 +106,8 @@ function initTaskForm() {
     },
     deleteTask: async function(id) {
       await apiFetch(`challenges/${id}`)
-        .method("DELETE")
-        .as(username)
+      .method("DELETE")
+      .as(username)
       const taskCard = tasksWrapper.querySelector(`.task-card[data-id='${id}']`)
       tasksWrapper.removeChild(taskCard)
     }
@@ -134,14 +153,14 @@ function insertTask( {
   tasksWrapper.innerHTML += html
 }
 function updateTask(taskCard, {
- title, repeat_type, difficulty
+  title, repeat_type, difficulty
 }) {
-  taskCard.setAttribute("data-title",title)
-  taskCard.setAttribute("data-repeat_type",repeat_type)
-   taskCard.setAttribute("data-difficulty-id",difficulty.id)
-  const difficultyElm =  taskCard.querySelector(".difficulty")
+  taskCard.setAttribute("data-title", title)
+  taskCard.setAttribute("data-repeat_type", repeat_type)
+  taskCard.setAttribute("data-difficulty-id", difficulty.id)
+  const difficultyElm = taskCard.querySelector(".difficulty")
   difficultyElm.style.backgroundColor = difficulty.light_color
-  difficultyElm.textContent = difficulty.name 
+  difficultyElm.textContent = difficulty.name
   difficultyElm.classList[1] = difficulty.slug
   taskCard.querySelector(".title").textContent = title
 }
@@ -156,14 +175,19 @@ async function setAllTask() {
 
 
 
-function switchAccount(){
-  if (username === "hasan") 
+function switchAccount() {
+  if (username === "hasan")
     username = "hossain"
-  else username = " hasan"
-   setAllTask()
+  else
+    username = " hasan"
+  localStorage.setItem("username", username)
+  setAllTask()
 }
 
 window.onload = ()=> {
+  const userSelectFeild = document.getElementById("user-select-feild")
+  userSelectFeild.onchange = switchAccount
+  userSelectFeild.selectedIndex = username === "hasan" ? 0: 1
   const createNewTaskBtn = document.querySelector(".create-new-task-btn")
   createNewTaskBtn.addEventListener("click", setCreateTaskForm)
   setAllTask()
