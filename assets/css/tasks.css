@@ -260,7 +260,14 @@ section#task-section > .tasks-wrapper > .task-card.ai-suggest > .task-footer > .
   align-items: center;
   gap: 10px;
 }
-
+.task-form > .difficulty-group > .right{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+.task-form > .difficulty-group > .right > .ai-btn{
+ display: flex;
+}
 
 
 /* Daily Task Switch */

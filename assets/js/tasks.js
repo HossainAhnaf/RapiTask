@@ -29,27 +29,14 @@ function initTaskForm() {
   const dailyTaskCheckbox = document.getElementById("daily-task-checkbox")
   const submitBtn = taskForm.querySelector(".submit-btn")
   const discardBtn = taskForm.querySelector(".discard-btn")
+   setDifficultySelect(difficultySelect)
+  //  const suggestedDiff = await apiFetch('difficulties/suggestions')
+  //   .as(username)
+  //   .method("POST")
+  //   .body({
+  //     title: formTitle.value
+  //   })
 
-  const formTitleDebounce = debounce( async ()=> {
-   const suggestedDiff = await apiFetch('difficulties/suggestions')
-    .as(username)
-    .method("POST")
-    .body({
-      title: formTitle.value
-    })
-    console.log(suggestedDiff)
-   // console.log(1)
-  }, 2000)
-try {
-  setDifficultySelect(difficultySelect)
-
-  formTitle.addEventListener("input", ()=> {
-    formTitleDebounce()
-  //  console.log(0)
-    })
-}catch(e){
-  console.log(e)
-}  
   discardBtn.onclick = ()=> {
     formTitle.textContent = "Create New Task"
     taskTitleInput.value = ""
