@@ -90,15 +90,7 @@ section#task-section > .tasks-wrapper > .task-card {
   animation: shine 2s infinite;
 }
 
-@-webkit-keyframes shine {
-  from {
-    -webkit-mask-position: 150%;
-  }
-  
-  to {
-    -webkit-mask-position: -50%;
-  }
-}
+
 /* Header layout */
 section#task-section > .tasks-wrapper > .task-card > .task-header {
   display: flex;
@@ -264,11 +256,30 @@ section#task-section > .tasks-wrapper > .task-card.ai-suggest > .task-footer > .
  display: flex;
  justify-content: center;
  align-items: center;
+ gap: 0;
 }
-.task-form > .difficulty-group > .right > .ai-btn{
- display: flex;
+.task-form > .difficulty-group > .right > #difficulty-select{
+ border-radius: 5px 0 0 5px;
 }
 
+.task-form > .difficulty-group > .right > #difficulty-select.loading{
+  -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
+  -webkit-mask-size: 200%;
+  animation: shine 2s infinite;
+}
+.task-form > .difficulty-group > .right > #ai-diff-suggest-btn{
+ display: flex;
+ padding: 7px;
+ background-color: white;
+ border: none;
+}
+.task-form > .difficulty-group > .right > #ai-diff-suggest-btn:disabled{
+ filter: invert(30%);
+}
+.task-form > .difficulty-group > .right > #ai-diff-suggest-btn:active{
+  filter: invert(10%);
+
+}
 
 /* Daily Task Switch */
 .task-form >.switch-group {
@@ -338,4 +349,15 @@ section#task-section > .tasks-wrapper > .task-card.ai-suggest > .task-footer > .
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+
+@-webkit-keyframes shine {
+  from {
+    -webkit-mask-position: 150%;
+  }
+  
+  to {
+    -webkit-mask-position: -50%;
+  }
 }

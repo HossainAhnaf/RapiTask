@@ -26,17 +26,23 @@ function initTaskForm() {
   const formTitle = taskForm.querySelector(".form-title")
   const taskTitleInput = document.getElementById("task-title-input")
   const difficultySelect = document.getElementById("difficulty-select")
+  const aiDiffSuggestBtn = document.getElementById("ai-diff-suggest-btn")
   const dailyTaskCheckbox = document.getElementById("daily-task-checkbox")
   const submitBtn = taskForm.querySelector(".submit-btn")
   const discardBtn = taskForm.querySelector(".discard-btn")
    setDifficultySelect(difficultySelect)
-  //  const suggestedDiff = await apiFetch('difficulties/suggestions')
-  //   .as(username)
-  //   .method("POST")
-  //   .body({
-  //     title: formTitle.value
-  //   })
 
+  aiDiffSuggestBtn.onclick = async ()=>{
+  if (taskTitleInput.value){
+    const suggestedDiff = await apiFetch('difficulties/suggestions')
+    .as(username)
+    .method("POST")
+    .body({
+      title: taskTitleInput.value
+    })
+    difficultySelect.value = suggestedDiff.data.id
+  }
+  }
   discardBtn.onclick = ()=> {
     formTitle.textContent = "Create New Task"
     taskTitleInput.value = ""
