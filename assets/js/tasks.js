@@ -12,11 +12,11 @@ async function setDifficultySelect(element) {
 }
 async function updateTaskStatus(id, status) {
   const res = await apiFetch(`challenges/${id}`)
-  .as(username)
-  .method("PATCH")
-  .body({
-    "status": status
-  })
+    .as(username)
+    .method("PATCH")
+    .body({
+      "status": status
+    })
   if (res.success) {
     tasksWrapper.removeChild(tasksWrapper.querySelector(`.task-card[data-id="${id}"]`))
   }
@@ -30,20 +30,24 @@ function initTaskForm() {
   const dailyTaskCheckbox = document.getElementById("daily-task-checkbox")
   const submitBtn = taskForm.querySelector(".submit-btn")
   const discardBtn = taskForm.querySelector(".discard-btn")
-   setDifficultySelect(difficultySelect)
+  setDifficultySelect(difficultySelect)
 
-  aiDiffSuggestBtn.onclick = async ()=>{
-  if (taskTitleInput.value){
-    const suggestedDiff = await apiFetch('difficulties/suggestions')
-    .as(username)
-    .method("POST")
-    .body({
-      title: taskTitleInput.value
-    })
-    difficultySelect.value = suggestedDiff.data.id
+  aiDiffSuggestBtn.onclick = async () => {
+    if (taskTitleInput.value) {
+      aiDiffSuggestBtn.disabled = true
+      const suggestedDiff = await apiFetch('difficulties/suggestions')
+        .as(username)
+        .method("POST")
+        .body({
+          title: taskTitleInput.value
+        })
+      difficultySelect.value = suggestedDiff.data.id
+      if (suggestedDiff.data){
+
+      }
+    }
   }
-  }
-  discardBtn.onclick = ()=> {
+  discardBtn.onclick = () => {
     formTitle.textContent = "Create New Task"
     taskTitleInput.value = ""
     dailyTaskCheckbox.checked = false
@@ -51,21 +55,21 @@ function initTaskForm() {
   }
 
   return {
-    setCreateTaskForm: function() {
+    setCreateTaskForm: function () {
       taskForm.parentNode.classList.remove("hide")
       submitBtn.textContent = "Create"
       discardBtn.textContent = "Discard"
-      submitBtn.onclick = async ()=> {
+      submitBtn.onclick = async () => {
         const res = await apiFetch("challenges")
-        .as(username)
-        .method("POST")
-        .body({
-          "title": taskTitleInput.value,
-          "repeat_type": dailyTaskCheckbox.checked ? "D": "O",
-          "difficulty": {
-            "id": difficultySelect.value
-          }
-        })
+          .as(username)
+          .method("POST")
+          .body({
+            "title": taskTitleInput.value,
+            "repeat_type": dailyTaskCheckbox.checked ? "D" : "O",
+            "difficulty": {
+              "id": difficultySelect.value
+            }
+          })
 
         taskForm.parentNode.classList.add("hide")
         insertTask(res.data)
@@ -73,36 +77,40 @@ function initTaskForm() {
       }
 
     },
-    setUpdateTaskForm: function(id) {
+    setUpdateTaskForm: function (id) {
       taskForm.parentNode.classList.remove("hide")
       formTitle.textContent = `Edit Task - ${id}`
       const taskCard = tasksWrapper.querySelector(`.task-card[data-id='${id}']`)
       taskTitleInput.value = taskCard.getAttribute("data-title")
-      dailyTaskCheckbox.checked = taskCard.getAttribute("data-repeat_type") === "O" ? false: true
+      dailyTaskCheckbox.checked = taskCard.getAttribute("data-repeat_type") === "O" ? false : true
       difficultySelect.value = taskCard.getAttribute("data-difficulty-id")
       submitBtn.textContent = "Save"
       discardBtn.textContent = "Cancel"
-      submitBtn.onclick = async ()=> {
+      submitBtn.onclick = async () => {
         const res = await apiFetch(`challenges/${id}`)
-        .as(username)
-        .method("PATCH")
-        .body({
-          "title": taskTitleInput.value,
-          "repeat_type": dailyTaskCheckbox.checked ? "D": "O",
-          "difficulty": {
-            "id": difficultySelect.value
-          }
-        })
+          .as(username)
+          .method("PATCH")
+          .body({
+            "title": taskTitleInput.value,
+            "repeat_type": dailyTaskCheckbox.checked ? "D" : "O",
+            "difficulty": {
+              "id": difficultySelect.value
+            }
+          })
         taskForm.parentNode.classList.add("hide")
         updateTask(taskCard, res.data)
       }
     },
-    deleteTask: async function(id) {
-      await apiFetch(`challenges/${id}`)
-      .method("DELETE")
-      .as(username)
+    deleteTask: async function (id) {
       const taskCard = tasksWrapper.querySelector(`.task-card[data-id='${id}']`)
-      tasksWrapper.removeChild(taskCard)
+      if (taskCard) {
+        tasksWrapper.removeChild(taskCard)
+        const res = await apiFetch(`challenges/${id}`)
+          .as(username)
+          .method("DELETE")
+      setBlankMessage()
+
+      }
     }
   }
 }
@@ -112,7 +120,8 @@ const {
   setUpdateTaskForm,
   deleteTask
 } = initTaskForm()
-function insertTask( {
+
+function insertTask({
   id, title, repeat_type, difficulty
 }) {
   const html = `
@@ -144,6 +153,7 @@ function insertTask( {
 
   `
   tasksWrapper.innerHTML += html
+  setBlankMessage()
 }
 function updateTask(taskCard, {
   title, repeat_type, difficulty
@@ -159,14 +169,31 @@ function updateTask(taskCard, {
 }
 
 async function setAllTask() {
-  tasksWrapper.innerHTML = ""
+  const taskCards = tasksWrapper.querySelectorAll(".task-card")
   const tasksData = await apiFetch('challenges').as(username)
-  for (data of tasksData.results) {
+
+
+  for (const taskCard of taskCards)
+    tasksWrapper.removeChild(taskCard)
+
+  for (data of tasksData.results) 
     insertTask(data)
-  }
+
+    if (tasksData.results) 
+    setBlankMessage()
+  
 }
 
-
+function setBlankMessage() {
+ const blankMessageElm = tasksWrapper.querySelector(".blank-message")
+ const taskCards = tasksWrapper.querySelectorAll(".task-card")
+ blankMessageElm.style.display = ""
+ blankMessageElm.textContent = "loading..."
+ if (Array.from(taskCards).length === 0 ) 
+     blankMessageElm.textContent = "No active tasks"
+    
+  else blankMessageElm.style.display = "none"
+}
 
 function switchAccount() {
   if (username === "hasan")
@@ -177,10 +204,10 @@ function switchAccount() {
   setAllTask()
 }
 
-window.onload = ()=> {
+window.onload = () => {
   const userSelectFeild = document.getElementById("user-select-feild")
   userSelectFeild.onchange = switchAccount
-  userSelectFeild.selectedIndex = username === "hasan" ? 0: 1
+  userSelectFeild.selectedIndex = username === "hasan" ? 0 : 1
   const createNewTaskBtn = document.querySelector(".create-new-task-btn")
   createNewTaskBtn.addEventListener("click", setCreateTaskForm)
   setAllTask()

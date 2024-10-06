@@ -2,6 +2,7 @@ var username = localStorage.getItem("username") || "hasan"
 
 var API_BASE_URL = "https://rapidtask.pythonanywhere.com/api"
 
+
 function apiFetch(path) {
   let username = null;
   let method = 'GET';
@@ -48,14 +49,26 @@ function apiFetch(path) {
         },
         body: method !== 'GET' ? body: null // Only set body if the method is not GET
       })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status === 204 || response.headers.get('content-length') === '0') {
+          return {}; // or return null, depending on your case
+        }
+        return response.json(); // Otherwise, parse as JSON
+      })
       .then(resolve)
       .catch(reject);
     }
   };
 }
 
-
-
+function debounce(func, delay) {
+  let timer;
+  return function(...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
 // https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/level_titles/leveltitle/
 // https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/difficulties/difficulty/
