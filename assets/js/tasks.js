@@ -19,6 +19,7 @@ async function updateTaskStatus(id, status) {
     })
   if (res.success) {
     tasksWrapper.removeChild(tasksWrapper.querySelector(`.task-card[data-id="${id}"]`))
+    setBlankMessage()
   }
 }
 function initTaskForm() {
@@ -35,6 +36,7 @@ function initTaskForm() {
   aiDiffSuggestBtn.onclick = async () => {
     if (taskTitleInput.value) {
       aiDiffSuggestBtn.disabled = true
+      difficultySelect.classList.add("loading")
       const suggestedDiff = await apiFetch('difficulties/suggestions')
         .as(username)
         .method("POST")
@@ -43,7 +45,9 @@ function initTaskForm() {
         })
       difficultySelect.value = suggestedDiff.data.id
       if (suggestedDiff.data){
-
+        aiDiffSuggestBtn.disabled = false
+        difficultySelect.classList.remove("loading")
+  
       }
     }
   }
@@ -199,7 +203,7 @@ function switchAccount() {
   if (username === "hasan")
     username = "hossain"
   else
-    username = " hasan"
+    username = "hasan"
   localStorage.setItem("username", username)
   setAllTask()
 }
