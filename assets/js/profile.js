@@ -41,15 +41,15 @@ function setProfileData() {
   const authorTitle = document.getElementById("author-title")
   const authorLevel = document.getElementById("author-level")
   const xpProgressbar = document.getElementById('xp-progressbar')
-
+ 
   const nextTitleRequiredLevel = levelTitles.find(lT => lT.id === profileData.level_title.id + 1).required_level
-    console.log(profileData);
+  let currentXp =  profileData.total_xp - (1000 * (profileData.level - 1))
   authorName.textContent = profileData.name
   authorTitle.textContent = profileData.level_title.title
   authorTitle.style.color = profileData.level_title.light_color
   authorLevel.textContent = `${profileData.level} / ${nextTitleRequiredLevel}`
-  xpProgressbar.querySelector(".xp-count").textContent = profileData.total_xp
-  xpProgressbar.querySelector(".complete-bg").style.width = `${(profileData.total_xp / 1000) * 100}%`
+  xpProgressbar.querySelector(".xp-count").textContent = currentXp
+  xpProgressbar.querySelector(".complete-bg").style.width = `${(currentXp / 1000) * 100}%`
   setActiveTasksData()
   setTaskActivity()
 }
