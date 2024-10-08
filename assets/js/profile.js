@@ -43,7 +43,7 @@ function setProfileData() {
   const xpProgressbar = document.getElementById('xp-progressbar')
 
   const nextTitleRequiredLevel = levelTitles.find(lT => lT.id === profileData.level_title.id + 1).required_level
-
+    console.log(profileData);
   authorName.textContent = profileData.name
   authorTitle.textContent = profileData.level_title.title
   authorTitle.style.color = profileData.level_title.light_color
