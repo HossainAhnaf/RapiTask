@@ -69,7 +69,7 @@ function initTaskForm() {
           .method("POST")
           .body({
             "title": taskTitleInput.value,
-            "repeat_type": dailyTaskCheckbox.checked ? "D" : "O",
+            "repeat_type": dailyTaskCheckbox.checked ? "daily" : "once",
             "difficulty": {
               "id": difficultySelect.value
             }
@@ -86,7 +86,7 @@ function initTaskForm() {
       formTitle.textContent = `Edit Task - ${id}`
       const taskCard = tasksWrapper.querySelector(`.task-card[data-id='${id}']`)
       taskTitleInput.value = taskCard.getAttribute("data-title")
-      dailyTaskCheckbox.checked = taskCard.getAttribute("data-repeat_type") === "O" ? false : true
+      dailyTaskCheckbox.checked = taskCard.getAttribute("data-repeat_type") === "once" ? false : true
       difficultySelect.value = taskCard.getAttribute("data-difficulty-id")
       submitBtn.textContent = "Save"
       discardBtn.textContent = "Cancel"
@@ -96,7 +96,7 @@ function initTaskForm() {
           .method("PATCH")
           .body({
             "title": taskTitleInput.value,
-            "repeat_type": dailyTaskCheckbox.checked ? "D" : "O",
+            "repeat_type": dailyTaskCheckbox.checked ? "daily" : "once",
             "difficulty": {
               "id": difficultySelect.value
             }
