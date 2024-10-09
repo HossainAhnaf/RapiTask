@@ -70,5 +70,10 @@ function debounce(func, delay) {
     }, delay);
   };
 }
+
+
+if (window.location.hostname === 'hossainahnaf.github.io') {
+  document.head.innerHTML += '<base href="/RapiTask/">';
+}
 // https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/level_titles/leveltitle/
 // https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/difficulties/difficulty/
