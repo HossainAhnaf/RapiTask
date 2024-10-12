@@ -4,7 +4,7 @@ var API_BASE_URL = "https://rapidtask.pythonanywhere.com/api"
 
 function url(path = '/') {
   if (window.location.hostname.endsWith('github.io')) {
-    path = '/RapiTask' + path
+    path = '/RapiTask/' + path
   }
   window.location = path
 }
