@@ -1,4 +1,68 @@
-var username = localStorage.getItem("username") || "hasan"
+class Cache {
+    static set(key, value, expiryInSeconds = null) {
+        const expiryTimestamp = expiryInSeconds 
+            ? Date.now() + expiryInSeconds * 1000 
+            : null;
+
+        const cacheItem = {
+            value: value,
+            expiry: expiryTimestamp
+        };
+
+        // Convert the cache item to a string before storing
+        localStorage.setItem(key, JSON.stringify(cacheItem));
+    }
+
+    // Method to get a value from the cache
+    static get(key) {
+        const cacheItemStr = localStorage.getItem(key);
+
+        // Return null if the cache item does not exist
+        if (!cacheItemStr) {
+            return null;
+        }
+            // Parse the cache item to get the original value and expiry
+        const cacheItem = JSON.parse(cacheItemStr);
+
+        // Check if the item is expired
+        if (cacheItem.expiry && Date.now() > cacheItem.expiry) {
+            Cache.delete(key); // Remove expired item
+            return null; // Return null if the item is expired
+        }
+
+        return cacheItem.value; // Return the cached value if it is still valid
+    }
+
+    // Method to delete a value from the cache
+    static delete(key) {
+        localStorage.removeItem(key);
+    }
+
+    // Method to clear all items from the cache
+    static clear() {
+        localStorage.clear();
+    }
+
+    // Method to check if a key exists in the cache and is not expired
+    static has(key) {
+        const cacheItemStr = localStorage.getItem(key);
+
+        if (!cacheItemStr) {
+            return false;
+        }
+
+        try {
+            const cacheItem = JSON.parse(cacheItemStr);
+            return !cacheItem.expiry || Date.now() <= cacheItem.expiry;
+        } catch (e) {
+            // Handle parsing errors
+            console.error('Error checking cache item:', e);
+            return false;
+        }
+    }
+}
+
+var username = Cache.get("username") || "hasan"
 
 var API_BASE_URL = "https://rapidtask.pythonanywhere.com/api"
 
@@ -76,6 +140,7 @@ function debounce(func, delay) {
     }, delay);
   };
 }
+
 
 // https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/level_titles/leveltitle/
 // https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/difficulties/difficulty/

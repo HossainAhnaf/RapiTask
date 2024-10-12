@@ -53,8 +53,11 @@ async function fetchProfileData() {
   profileData = profileData.data
 }
 async function fetchLevelTitles() {
-  levelTitles = await apiFetch("level-titles").as(username)
-  levelTitles = levelTitles.data
+  levelTitles = Cache.get('levelTitles')
+  if (!levelTitles) {
+    response = await apiFetch("level-titles").as(username)
+    Cache.set("levelTitles", response.data)
+  }
 }
 
 
@@ -73,7 +76,7 @@ function switchAccount() {
   if (username === "hasan")
     username = "hossain"
   else username = "hasan"
-  localStorage.setItem("username",username)
+  Cache.set("username", username)
   setAllData()
 }
 

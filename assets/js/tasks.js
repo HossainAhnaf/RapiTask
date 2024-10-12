@@ -1,13 +1,13 @@
 
 async function setDifficultySelect(element) {
-  const difficultiesData = await apiFetch("difficulties").as(username)
-  if (difficultiesData) {
-    for (const {
-      id, name, slug, xp_value
-    } of difficultiesData.data) {
-      const html = `<option  value="${id}" data-xp="${xp_value}">${name}</option>`
+  let difficulties = Cache.get('difficulties')
+  if (!difficulties) {
+    response = await apiFetch("difficulties").as(username)
+    Cache.set("difficulties", response.data)
+  }
+  for (const difficulty of difficulties) {
+      const html = `<option  value="${difficulty.id}" data-xp="${difficulty.xp_value}">${difficulty.name}</option>`
       element.innerHTML += html
-    }
   }
 }
 async function updateTaskStatus(id, status) {
@@ -83,7 +83,7 @@ function initTaskForm() {
     },
     setUpdateTaskForm: function (id) {
       taskForm.parentNode.classList.remove("hide")
-      formTitle.textContent = `Edit Task - ${id}`
+      formTitle.textContent = `Edit Task`
       const taskCard = tasksWrapper.querySelector(`.task-card[data-id='${id}']`)
       taskTitleInput.value = taskCard.getAttribute("data-title")
       dailyTaskCheckbox.checked = taskCard.getAttribute("data-repeat_type") === "once" ? false : true
