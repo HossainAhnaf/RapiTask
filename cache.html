@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e60000;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cache Manager</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Cache Key</th>
+                <th>Cache Value</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="cacheTableBody">
+            <!-- Cache items will be populated here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to populate the cache table with keys and values
+        function loadCacheTable() {
+            const cacheTableBody = document.getElementById('cacheTableBody');
+            cacheTableBody.innerHTML = ''; // Clear the existing rows
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = localStorage.getItem(key);
+
+                // Create a new row for each cache item
+                const row = document.createElement('tr');
+
+                const keyCell = document.createElement('td');
+                keyCell.textContent = key;
+                row.appendChild(keyCell);
+
+                const valueCell = document.createElement('td');
+                valueCell.textContent = value;
+                row.appendChild(valueCell);
+
+                const actionCell = document.createElement('td');
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deleteCacheItem(key);
+                actionCell.appendChild(deleteButton);
+                row.appendChild(actionCell);
+
+                cacheTableBody.appendChild(row);
+            }
+        }
+
+        // Function to delete a specific cache item
+        function deleteCacheItem(key) {
+            localStorage.removeItem(key);
+            loadCacheTable(); // Refresh the table after deletion
+        }
+
+        // Load the cache table when the page loads
+        window.onload = loadCacheTable;
+    </script>
+
+</body>
+</html>
