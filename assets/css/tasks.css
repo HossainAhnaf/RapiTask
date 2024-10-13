@@ -116,7 +116,7 @@ section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info >
 }
 
 /* Daily task icon */
-section#task-section > .tasks-wrapper > .task-card[data-repeat_type='O'] > .task-header > .task-info > .daily-icon {
+section#task-section > .tasks-wrapper > .task-card[data-repeat_type='once'] > .task-header > .task-info > .daily-icon {
  display: none; 
 }
 section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info > .daily-icon {
