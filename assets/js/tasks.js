@@ -76,6 +76,7 @@ function initTaskForm() {
           })
 
         taskForm.parentNode.classList.add("hide")
+       if (res.data)
         insertTask(res.data)
 
       }
