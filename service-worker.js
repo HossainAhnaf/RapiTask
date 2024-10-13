@@ -7,6 +7,7 @@ self.addEventListener('install', (event) => {
         '/tasks.html',
         '/cache.html',
         '/styles.css',
+        '/assets/js/app.js',
         '/assets/js/global.js',
         '/assets/js/profile.js',
         '/assets/js/tasks.js',
