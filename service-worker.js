@@ -4,8 +4,12 @@ self.addEventListener('install', (event) => {
       return cache.addAll([
         '/',
         '/index.html',
+        '/tasks.html',
+        '/cache.html',
         '/styles.css',
-        '/app.js',
+        '/assets/js/global.js',
+        '/assets/js/profile.js',
+        '/assets/js/tasks.js',
         '/assets/img/robot.png',
       ]);
     })
