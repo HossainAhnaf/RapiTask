@@ -140,16 +140,6 @@ function debounce(func, delay) {
   };
 }
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/RapiTask/service-worker.js')
-    .then((registration) => {
-      console.log('Service Worker registered with scope:', registration.scope);
-    })
-    .catch((error) => {
-      console.error('Service Worker registration failed:', error);
-    });
-}
-
 
 // https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/level_titles/leveltitle/
 // https://rapidtask.pythonanywhere.com/admin/login/?next=/admin/difficulties/difficulty/
