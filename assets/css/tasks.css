@@ -116,15 +116,15 @@ section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info >
 }
 
 /* Daily task icon */
-section#task-section > .tasks-wrapper > .task-card[data-repeat_type='once'] > .task-header > .task-info > .daily-icon {
- display: none; 
-}
+
 section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info > .daily-icon {
   font-size: 1.2em;
   color: #ffab00; 
   cursor: default;
 }
-
+section#task-section > .tasks-wrapper > .task-card[data-repeat_type='once'] > .task-header > .task-info > .daily-icon {
+  display: none; 
+ }
 
 
 /* Action buttons in the header (edit and delete) */
