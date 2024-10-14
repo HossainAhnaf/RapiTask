@@ -65,12 +65,6 @@ class Cache {
 var username = Cache.get("username") || "hasan"
 var API_BASE_URL = "https://rapidtask.pythonanywhere.com/api"
 
-function url(path = '/') {
-  if (window.location.hostname.endsWith('github.io')) {
-    path = '/RapiTask/' + path
-  }
-  window.location = path
-}
 
 function apiFetch(path) {
   let username = null;
