@@ -62,7 +62,7 @@ class Cache {
     }
 }
 
-var username = "hasan"
+var username = Cache.get("username") || "hasan"
 var API_BASE_URL = "https://rapidtask.pythonanywhere.com/api"
 
 
