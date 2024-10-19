@@ -3,7 +3,8 @@ async function setDifficultySelect(element) {
   let difficulties = Cache.get('difficulties')
   if (!difficulties) {
     response = await apiFetch("difficulties").as(username)
-    Cache.set("difficulties", response.data)
+    difficulties = response.data
+    Cache.set("difficulties", difficulties)
   }
   for (const difficulty of difficulties) {
       const html = `<option  value="${difficulty.id}" data-xp="${difficulty.xp_value}">${difficulty.name}</option>`
