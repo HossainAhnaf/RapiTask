@@ -56,7 +56,8 @@ async function fetchLevelTitles() {
   levelTitles = Cache.get('levelTitles')
   if (!levelTitles) {
     response = await apiFetch("level-titles").as(username)
-    Cache.set("levelTitles", response.data)
+    levelTitles = response.results
+    Cache.set("levelTitles", levelTitles)
   }
 }
 

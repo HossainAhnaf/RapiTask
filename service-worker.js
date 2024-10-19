@@ -1,7 +1,8 @@
 self.addEventListener('install', (event) => {
     event.waitUntil(
       caches.open('rapitask-cache-v1').then((cache) => {
-        return cache.addAll([
+        return caches.delete('rapitask-cache-v1');
+        cache.addAll([
           '/',
           '/index.html',
           '/tasks.html',
