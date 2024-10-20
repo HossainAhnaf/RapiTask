@@ -18,3 +18,13 @@ if ('serviceWorker' in navigator) {
   });
 
 }
+
+  Notification.requestPermission().then((permission) => {
+    if (permission === 'granted') {
+        
+        // new Notification("RapiTask", {
+//             body: `You have ${} tasks remaining for the day`,
+//             icon: '/assets/img/robot.png',
+//         })
+    }
+  });

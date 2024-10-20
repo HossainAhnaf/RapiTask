@@ -17,33 +17,37 @@ self.addEventListener('install', (event) => {
     );
   });
   
-  self.addEventListener('fetch', (event) => {
-    event.respondWith(
-      caches.match(event.request).then((response) => {
-        return response || fetch(event.request);
-      })
-    );
-  });
-  
-  // Periodic background sync to fetch active tasks count
-  self.addEventListener('periodicsync', (event) => {
-    if (event.tag === 'fetch-active-tasks') {
-      event.waitUntil(fetchActiveTasksCount());
-    }
-  });
-  
-  async function fetchActiveTasksCount() {
-    // const response = await fetch('/api/active-tasks-count');
-    // const data = await response.json();
-    // const taskCount = data.activeTaskCount;
-    const taskCount = 3
-  
-    if (taskCount > 0) {
-      self.registration.showNotification('RapiTask Notification', {
-        body: `You have ${taskCount} active tasks.`,
+self.addEventListener('fetch', (event) => {
+event.respondWith(
+  caches.match(event.request).then((response) => {
+    return response || fetch(event.request);
+  })
+);
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  showRemainingTasksNotification();
+});
+
+function showRemainingTasksNotification() {
+  const remainingTasksCount = getRemainingTasksCount(); // Fetch task count from storage
+
+  if (Notification.permission === 'granted' && remainingTasksCount > 0) {
+    navigator.serviceWorker.ready.then((registration) => {
+      registration.showNotification('Task Reminder', {
+        body: `You have ${remainingTasksCount} tasks remaining for the day.`,
         icon: '/assets/img/robot.png',
-        tag: 'active-tasks-notification',
+        badge: '/assets/img/robot.png',
+        requireInteraction: true, // Keeps the notification visible until user interacts
       });
-    }
+    });
   }
-  
+}
+
+function getRemainingTasksCount() {
+  // This function should return the count of remaining tasks.
+  // Example: Replace this with your logic to fetch the actual count of remaining tasks from local storage or IndexedDB.
+  return 5; // Placeholder value, replace with actual task count
+}
+
