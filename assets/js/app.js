@@ -7,16 +7,6 @@ if ('serviceWorker' in navigator) {
       console.error('Service Worker registration failed:', error);
     });
 
-  navigator.serviceWorker.ready.then((registration) => {
-    if ('periodicSync' in registration) {
-      registration.periodicSync.register('fetch-active-tasks', {
-        minInterval: 24 * 60 * 60 * 1000, // 1 day interval
-      }).catch((err) => console.error('Periodic Sync registration failed:', err));
-    } else {
-      console.log('Periodic Sync not supported.');
-    }
-  });
-
 }
 
   Notification.requestPermission().then((permission) => {

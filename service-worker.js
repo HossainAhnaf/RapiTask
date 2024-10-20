@@ -26,10 +26,6 @@ event.respondWith(
 });
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  showRemainingTasksNotification();
-});
-
 function showRemainingTasksNotification() {
   const remainingTasksCount = getRemainingTasksCount(); // Fetch task count from storage
 
@@ -51,3 +47,4 @@ function getRemainingTasksCount() {
   return 5; // Placeholder value, replace with actual task count
 }
 
+showRemainingTasksNotification();
