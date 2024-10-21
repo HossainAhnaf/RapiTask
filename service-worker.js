@@ -47,4 +47,4 @@ function getRemainingTasksCount() {
   return 5; // Placeholder value, replace with actual task count
 }
 
-showRemainingTasksNotification();
+//showRemainingTasksNotification();
