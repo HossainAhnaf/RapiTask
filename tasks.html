@@ -121,12 +121,21 @@
   <!-- Daily Task Checkbox -->
   <div class="form-group switch-group">
     <label for="daily-task-checkbox">Daily Task</label>
+    <select id="daily-task-select">
+      <option value="once">once</option>
+      <option value="daily">daily</option>
+      <option value="weekly">weekly</option>
+      
+    </select>
+    
+  </div>
+  <div class="form-group switch-group">
+    <label for="daily-task-checkbox">Ignore for AI</label>
     <label class="switch">
-      <input type="checkbox" id="daily-task-checkbox">
+      <input type="checkbox" id="ignore-for-ai-checkbox">
       <span class="slider"></span>
     </label>
   </div>
-  
   <!-- Submit Button -->
   <div class="btns-wrapper">
      <button class="submit-btn">Create</button>

@@ -72,14 +72,17 @@ function initTaskForm() {
             "title": taskTitleInput.value,
             "repeat_type": dailyTaskCheckbox.checked ? "daily" : "once",
             "difficulty": {
-              "id": difficultySelect.value
-            }
+              "id": difficultySelect.value,
+              "score": Cache.get("difficulties")[difficultySelect.value].score
+            },
+            "ignore_for_ai": false
           })
 
         taskForm.parentNode.classList.add("hide")
+        console.log(taskTitleInput.value);
        if (res.data)
         insertTask(res.data)
-
+       else console.log(res);
       }
 
     },
