@@ -117,15 +117,16 @@ section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info >
 
 /* Daily task icon */
 
-section#task-section > .tasks-wrapper > .task-card > .task-header > .task-info > .daily-icon {
-  font-size: 1.2em;
-  color: #ffab00; 
-  cursor: default;
-}
-section#task-section > .tasks-wrapper > .task-card[data-repeat_type='once'] > .task-header > .task-info > .daily-icon {
+
+section#task-section > .tasks-wrapper > .task-card[data-repeat_type='once'] > .task-header > .task-info > :is(.daily-icon,.weekly-icon) {
   display: none; 
  }
-
+ section#task-section > .tasks-wrapper > .task-card[data-repeat_type='daily'] > .task-header > .task-info > .weekly-icon {
+  display: none; 
+ }
+ section#task-section > .tasks-wrapper > .task-card[data-repeat_type='weekly'] > .task-header > .task-info > .daily-icon {
+  display: none; 
+ }
 
 /* Action buttons in the header (edit and delete) */
 section#task-section > .tasks-wrapper > .task-card > .task-header > .action-icons {
@@ -239,7 +240,9 @@ section#task-section > .tasks-wrapper > .task-card.ai-suggest > .task-footer > .
   background-color:rgb(163, 251, 251);
   transition: border-color .3s;
 }
-
+.task-form  .form-control#daily-task-select {
+ width: 155.62500px;
+}
 .task-form  .form-control:focus {
   border-color:  white;
   outline: none;

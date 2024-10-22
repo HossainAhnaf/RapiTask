@@ -29,7 +29,7 @@ function initTaskForm() {
   const taskTitleInput = document.getElementById("task-title-input")
   const difficultySelect = document.getElementById("difficulty-select")
   const aiDiffSuggestBtn = document.getElementById("ai-diff-suggest-btn")
-  const dailyTaskCheckbox = document.getElementById("daily-task-checkbox")
+  const dailyTaskSelect = document.getElementById("daily-task-select")
   const submitBtn = taskForm.querySelector(".submit-btn")
   const discardBtn = taskForm.querySelector(".discard-btn")
   setDifficultySelect(difficultySelect)
@@ -55,7 +55,6 @@ function initTaskForm() {
   discardBtn.onclick = () => {
     formTitle.textContent = "Create New Task"
     taskTitleInput.value = ""
-    dailyTaskCheckbox.checked = false
     taskForm.parentNode.classList.add("hide")
   }
 
@@ -70,7 +69,7 @@ function initTaskForm() {
           .method("POST")
           .body({
             "title": taskTitleInput.value,
-            "repeat_type": dailyTaskCheckbox.checked ? "daily" : "once",
+            "repeat_type": dailyTaskSelect.value,
             "difficulty": {
               "id": difficultySelect.value,
               "score": Cache.get("difficulties")[difficultySelect.value].score
@@ -91,7 +90,7 @@ function initTaskForm() {
       formTitle.textContent = `Edit Task`
       const taskCard = tasksWrapper.querySelector(`.task-card[data-id='${id}']`)
       taskTitleInput.value = taskCard.getAttribute("data-title")
-      dailyTaskCheckbox.checked = taskCard.getAttribute("data-repeat_type") === "once" ? false : true
+      dailyTaskSelect.value = taskCard.getAttribute("data-repeat_type")
       difficultySelect.value = taskCard.getAttribute("data-difficulty-id")
       submitBtn.textContent = "Save"
       discardBtn.textContent = "Cancel"
@@ -101,7 +100,7 @@ function initTaskForm() {
           .method("PATCH")
           .body({
             "title": taskTitleInput.value,
-            "repeat_type": dailyTaskCheckbox.checked ? "daily" : "once",
+            "repeat_type": dailyTaskSelect.value,
             "difficulty": {
               "id": difficultySelect.value
             }
@@ -138,7 +137,32 @@ function insertTask({
   <div class="task-header">
   <div class="task-info">
   <span class="difficulty ${difficulty.slug}" style="background-color:${difficulty.light_color}">${difficulty.name}</span>
-  <span class="daily-icon" title="Daily Task">&#128197;</span>
+  <span class="daily-icon" title="Daily Task">
+  <svg width="24px" height="24px" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
+  preserveAspectRatio="xMidYMid meet" fill="#000000">
+  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+  <g id="SVGRepo_iconCarrier">
+    <path
+      d="M65.71 15.31h-43.6c-1.25 0-2.24 1-2.24 2.24v100.96c0 1.24 1 2.24 2.24 2.24H65.7c30.15 0 50.43-21.19 50.43-52.73c0-31.53-20.27-52.71-50.42-52.71zm-1.29 80.8c-.28 0-.54-.07-.79-.16c-.06.01-.11.03-.17.03c-.08.01-.14.04-.22.04h-14.7c-1.2 0-2.16-.97-2.16-2.16V42.19c0-1.19.96-2.16 2.16-2.16h14.7c.08 0 .14.03.22.04c.05 0 .11.02.17.03c.25-.09.51-.16.79-.16c.43 0 .86.04 1.29.06c.75.03 1.5.09 2.24.18c13.11 1.63 21.69 12.39 21.69 27.84s-8.59 26.21-21.69 27.84c-.74.09-1.49.15-2.24.18c-.43.03-.86.07-1.29.07z"
+      fill="#b30000"></path>
+  </g>
+</svg>
+  </span>
+  <span class="weekly-icon" title="Weekly Task">
+  <svg width="24px" height="24px" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"  preserveAspectRatio="xMidYMid meet" fill="#000000">
+  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+  <g id="SVGRepo_iconCarrier">
+    <path
+      d="M127.29 16.43a2.42 2.42 0 0 0-1.87-.91h-24.79c-1.14 0-2.12.8-2.33 1.92l-9.58 48.68l-13.47-48.86c-.08-.29-.22-.54-.39-.77c-.01-.01-.01-.04-.03-.05c-.03-.04-.08-.05-.11-.09c-.17-.2-.37-.36-.6-.49c-.08-.04-.15-.09-.23-.12c-.29-.13-.6-.22-.94-.22H55.04c-.33 0-.65.09-.94.22c-.08.04-.15.08-.23.12c-.23.13-.43.29-.6.49c-.04.04-.08.05-.11.09c-.01.02-.01.04-.03.05c-.17.23-.31.49-.39.77L39.29 66.12L29.7 17.44a2.386 2.386 0 0 0-2.33-1.92H2.59c-.73 0-1.43.34-1.87.91c-.46.57-.62 1.33-.45 2.03l24.79 100.45c.01.03.04.06.04.1c.06.19.13.36.23.53c.03.05.05.1.09.15c.02.03.03.06.06.09c.12.16.25.29.41.42c.02.02.05.03.08.05c.16.12.34.22.53.29c.05.02.11.04.17.06c.22.07.46.12.7.12h19.78c.33 0 .63-.08.92-.21c.08-.04.15-.08.23-.12c.2-.12.39-.26.55-.44c.04-.04.1-.06.14-.1c.02-.03.02-.06.04-.09c.19-.25.34-.52.42-.83L64 62.33l14.55 56.61c.08.31.23.58.42.83c.02.03.02.06.05.09c.03.04.09.06.13.1c.16.18.34.32.55.44c.08.04.15.09.23.12c.29.12.59.21.92.21h19.78c.24 0 .47-.05.7-.12c.06-.02.11-.04.18-.06c.18-.07.36-.17.53-.29c.03-.02.05-.03.08-.05c.15-.12.29-.26.41-.42c.02-.03.03-.06.06-.09c.03-.05.05-.1.09-.15c.09-.17.17-.34.23-.53c.01-.03.04-.06.04-.1l24.79-100.45c.16-.71 0-1.47-.45-2.04z"
+      fill="#b30000"></path>
+  </g>
+</svg>
+  </span>
+
   </div>
   <div class="action-icons">
   <button class="edit-btn" title="Edit" onclick="setUpdateTaskForm(${id})">
