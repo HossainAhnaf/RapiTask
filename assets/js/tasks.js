@@ -214,16 +214,47 @@ async function setAllTask() {
 
     if (tasksData.results) 
     setBlankMessage()
-   
+   setAiTaskSuggestion()
 }
-function setAiTaskSuggestion(){
-  const data = localStorage.getItem("ai-task-suggestion") 
-  if (data) {
+function removeOldAiTaskSuggestionData() {
+    localStorage.removeItem(`${username}'s-ai-task-suggestion`)
+}
+async function aiTaskSuggestionAddToTaskBtnClickHandler(title, difficultyId) {
+   
+    const res = await apiFetch("challenges")
+    .as(username)
+    .method("POST")
+    .body({
+      "title":title,
+      "repeat_type": "once",
+      "difficulty": {
+        "id": difficultyId,
+        "score": Cache.get("difficulties")[difficultyId].score
+      },
+      "ignore_for_ai": false
+    })
+
+    if (res.data) {
+      insertTask(res.data)
+      removeOldAiTaskSuggestionData()
+      setAiTaskSuggestion()
+    }
+ }  
+ function insertAiTaskSuggestion (data) { 
+    const aiSuggestElm = tasksWrapper.querySelector(".ai-suggest")
+    if (aiSuggestElm) {
+      aiSuggestElm.querySelector(".task-content").textContent = data.title
+      const difficultyElm = aiSuggestElm.querySelector(".difficulty")
+      difficultyElm.textContent = data.difficulty.name
+      difficultyElm.classList[1] = data.difficulty.slug
+      difficultyElm.style.backgroundColor = data.difficulty.light_color
+      aiSuggestElm.querySelector(".add-to-task-btn").setAttribute("onclick", `aiTaskSuggestionAddToTaskBtnClickHandler("${data.title}, ${data.difficulty.id}")`)
+    }else {
     tasksWrapper.innerHTML += `
     <div class="task-card ai-suggest">
     <div class="task-header">
       <div class="task-info">
-        <span class="difficulty ${data.difficulty.slug}" style="background-color:${difficulty.light_color}">${data.difficulty.name}</span>
+        <span class="difficulty ${data.difficulty.slug}" style="background-color:${data.difficulty.light_color}">${data.difficulty.name}</span>
         <img width="30px" height="30px" src="./assets/img/robot.png" alt="">
       </div>
       <div class="action-icons">
@@ -237,13 +268,28 @@ function setAiTaskSuggestion(){
     </div>
     
     <div class="task-footer">
-      <button class="add-to-task-btn" title="">Add To Task</button>
+      <button class="add-to-task-btn" title="" onclick='aiTaskSuggestionAddToTaskBtnClickHandler("${data.title}", ${data.difficulty.id})'>Add To Task</button>
     </div>
   </div>
     `
+    }
+ }
+async function setAiTaskSuggestion(){
+  const dataStr = localStorage.getItem(`${username}'s-ai-task-suggestion`) 
+  if (dataStr) {
+    insertAiTaskSuggestion(JSON.parse(dataStr))
   }else {
+    const res = await apiFetch(`challenges/suggestions`)
+    .as(username)
+    .method("POST")
+   if(res.success){
+    localStorage.setItem(`${username}'s-ai-task-suggestion`, JSON.stringify(res.data))
+    insertAiTaskSuggestion(res.data)
+   } 
+ }
+ 
 
-  }
+ 
 }
 
 
@@ -264,7 +310,8 @@ function switchAccount() {
     username = "hossain"
   else
     username = "hasan"
-  localStorage.setItem("username", username)
+    Cache.set("username", username)
+
   setAllTask()
 }
 
