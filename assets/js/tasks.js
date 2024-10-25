@@ -220,6 +220,7 @@ function removeOldAiTaskSuggestionData() {
     localStorage.removeItem(`${username}'s-ai-task-suggestion`)
 }
 async function aiTaskSuggestionAddToTaskBtnClickHandler(title, difficultyId) {
+   console.log(Cache.get("difficulties")[difficultyId],difficultyId);
    
     const res = await apiFetch("challenges")
     .as(username)
@@ -248,7 +249,7 @@ async function aiTaskSuggestionAddToTaskBtnClickHandler(title, difficultyId) {
       difficultyElm.textContent = data.difficulty.name
       difficultyElm.classList[1] = data.difficulty.slug
       difficultyElm.style.backgroundColor = data.difficulty.light_color
-      aiSuggestElm.querySelector(".add-to-task-btn").setAttribute("onclick", `aiTaskSuggestionAddToTaskBtnClickHandler("${data.title}, ${data.difficulty.id}")`)
+      aiSuggestElm.querySelector(".add-to-task-btn").onclick = () => aiTaskSuggestionAddToTaskBtnClickHandler(data.title, data.difficulty.id)
     }else {
     tasksWrapper.innerHTML += `
     <div class="task-card ai-suggest">
