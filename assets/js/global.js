@@ -60,6 +60,25 @@ class Cache {
             return false;
         }
     }
+    
+    static async remember(key, expiryInSeconds = null, callback) {
+        // Try to get the cached value
+        const cachedValue = Cache.get(key);
+
+        // If value exists and is not expired, return it
+        if (cachedValue !== null) {
+            return cachedValue;
+        }
+
+        // Otherwise, compute the new value using the callback function
+        const newValue = await callback();
+
+        // Store the new value in the cache
+        Cache.set(key, newValue, expiryInSeconds);
+
+        // Return the newly computed value
+        return newValue;
+    }
 }
 
 

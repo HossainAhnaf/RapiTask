@@ -217,7 +217,7 @@ async function setAllTask() {
    setAiTaskSuggestion()
 }
 function reloadAiTaskSuggestion() {
-    localStorage.removeItem(`${username}'s-ai-task-suggestion`)
+    localStorage.removeItem(`ai-task-suggestion/${username}`)
     setAiTaskSuggestion()
 }
 async function aiTaskSuggestionAddToTaskBtnClickHandler(title, difficultyId) {
@@ -274,11 +274,8 @@ async function aiTaskSuggestionAddToTaskBtnClickHandler(title, difficultyId) {
     }
  }
 async function setAiTaskSuggestion(){
-  const dataStr = localStorage.getItem(`${username}'s-ai-task-suggestion`) 
-  if (dataStr) {
-    insertAiTaskSuggestion(JSON.parse(dataStr))
-  }else {
-    const aiSuggestElm = tasksWrapper.querySelector(".ai-suggest")
+  const aiTaskSuggestion = await Cache.remember(`ai-task-suggestion/${username}`, 24 * 60 * 60, async () => {
+   const aiSuggestElm = tasksWrapper.querySelector(".ai-suggest")
    if (aiSuggestElm) {
     aiSuggestElm.classList.add("loading")
     aiSuggestElm.querySelector(".add-to-task-btn").disabled = true 
@@ -292,15 +289,13 @@ async function setAiTaskSuggestion(){
     aiSuggestElm.classList.remove("loading")
     aiSuggestElm.querySelector(".add-to-task-btn").disabled = false
     }
-    localStorage.setItem(`${username}'s-ai-task-suggestion`, JSON.stringify(res.data))
-    insertAiTaskSuggestion(res.data)
+    return res.data
    }else if (aiSuggestElm) {
     tasksWrapper.removeChild(aiSuggestElm)
-   } 
- }
- 
-
- 
+    throw new Error()
+   }
+  })
+    insertAiTaskSuggestion(aiTaskSuggestion)
 }
 
 
