@@ -74,7 +74,8 @@ function initTaskForm() {
               "id": difficultySelect.value,
               "score": Cache.get("difficulties")[difficultySelect.value].score
             },
-            "ignore_for_ai": false
+            "ignore_for_ai": false,
+            "snooze_for_today": false,
           })
 
         taskForm.parentNode.classList.add("hide")
