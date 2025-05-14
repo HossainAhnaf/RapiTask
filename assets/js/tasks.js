@@ -210,7 +210,7 @@ async function setAllTask() {
   for (const taskCard of taskCards)
     tasksWrapper.removeChild(taskCard)
 
-  for (data of tasksData.results) 
+  for (data of tasksData.data) 
     insertTask(data)
 
     if (tasksData.results) 
